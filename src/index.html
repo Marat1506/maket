@@ -15,7 +15,45 @@
 <body class="text-white" style="background-color: rgba(15, 16, 16, 1);">
 
     <!-- Header Placeholder - будет вставлен динамически -->
-    <div id="header-placeholder"></div>
+<!--    <div id="header-placeholder"></div>-->
+
+    <header class="header py-4">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <!-- Логотип с адаптивными размерами -->
+                <img src="./logo.png" alt="Logo" class="header-logo d-none d-sm-block" />
+                <img src="./logo.png" alt="Logo" class="header-logo-mobile d-block d-sm-none" />
+
+                <!-- Кнопка мобильного меню -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Навигационное меню -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Турниры</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Сообщество</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Member Ship</a>
+                        </li>
+                    </ul>
+
+                    <!-- Правая часть с флагом, пользователем и кнопкой -->
+                    <div class="header-right d-flex align-items-center">
+                        <img src="./flag.png" alt="Russia Flag" class="flag me-2 me-md-3" />
+                        <img src="./user_logo.png" alt="User" class="user-logo me-2 me-md-3" />
+                        <button href="#" class="btn btn-light  px-5  rounded-5 fs-5">Создать аккаунт</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <!-- Main Content with background -->
     <main class="main-with-bg">
