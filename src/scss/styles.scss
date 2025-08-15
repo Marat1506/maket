@@ -11,7 +11,9 @@ body {
 // Main with background
 .main-with-bg {
   position: relative;
-  min-height: 100vh;
+  min-height: 100vh; // Гарантируем, что блок займет минимум весь экран
+  max-height: 100vh; // Ограничиваем максимальную высоту экраном
+  overflow: hidden; // Скрываем всё, что выходит за пределы
   background-image: url('../main_background.png');
   background-size: cover;
   background-position: center top;
@@ -31,10 +33,9 @@ body {
 }
 
 .main-content {
-  position: relative;
-  z-index: 1;
-  flex: 1;
-  padding-top: 80px; // Отступ для header
+  flex: 1; // Занимает всё доступное пространство
+  display: flex;
+  flex-direction: column;
 }
 
 // Стили для header
@@ -50,7 +51,7 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   .navbar {
-    max-width: 1200px;
+    //max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
 
@@ -105,10 +106,37 @@ body {
 
 // Стили для hero-section
 .hero-section {
-  .container {
-    height: calc(100vh - 80px);
+  flex: 1; // Растягиваем на всю высоту
+  display: flex;
+  align-items: center;
+
+  .card {
+    width: 193px;
+    height: 145px;
     display: flex;
     align-items: center;
+    justify-content: center;
+  }
+
+  .hero_flex {
+    display: flex;
+    gap: 1rem;
+  }
+
+
+  .card-body {
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .hero-title {
@@ -127,6 +155,13 @@ body {
       transform: translateY(-2px);
       box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
     }
+  }
+
+  // Убираем отступы между колонками
+  .row.gx-0 .col-md-6,
+  .row.gx-0 .col-6 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 
@@ -270,6 +305,15 @@ body {
     justify-content: space-between;
     padding: 3rem 2rem;
     gap: 2rem;
+    transition: all 0.3s ease; /* Добавляем плавный переход */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+
+    &:hover {
+      transform: translateY(-5px); /* Эффект поднятия при наведении */
+      box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2); /* Тень как у карточек */
+      border-color: rgba(0, 123, 255, 0.3) !important; /* Подсветка границы */
+    }
 
     .content_wostour_chat {
       width: 50%; /* Занимает 50% ширины родителя */
@@ -381,6 +425,7 @@ body {
     color: white;
   }
 }
+
 
 .main-footer {
   .footer-top, .footer-bottom {
@@ -738,5 +783,114 @@ body {
         }
       }
     }
+  }
+}
+
+// Стили для hero-cards (замена Bootstrap)
+.hero-cards-container {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.hero-cards-grid {
+  display: flex;
+  gap: 0; // Убираем все отступы между колонками
+  width: 100%;
+}
+
+.hero-cards-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; // Небольшой отступ между карточками в колонке
+}
+
+.hero-card {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero-card-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0d6efd;
+  margin: 0 0 0.5rem 0;
+  line-height: 1;
+}
+
+.hero-card-text {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+// Адаптивность для hero-cards
+@media (max-width: 768px) {
+  .hero-cards-grid {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .hero-cards-column {
+    gap: 0.5rem;
+  }
+  
+  .hero-card {
+    min-height: 100px;
+  }
+  
+  .hero-card-number {
+    font-size: 2rem;
+  }
+  
+  .hero-card-text {
+    font-size: 0.8rem;
+  }
+}
+
+// Стили для hero-cards (ручная верстка без Bootstrap)
+.hero-cards-wrapper {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.hero-cards-grid {
+  display: flex;
+  width: 100%;
+  gap: 0; // Убираем все отступы между колонками
+}
+
+.hero-cards-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; // Небольшой отступ между карточками в колонке
+}
+
+// Адаптивность для hero-cards
+@media (max-width: 768px) {
+  .hero-cards-grid {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .hero-cards-column {
+    gap: 0.5rem;
   }
 }
