@@ -296,6 +296,28 @@ body {
       text-align: center;
     }
   }
+  .scooped-box {
+    position: absolute;
+    left: -80px;
+    bottom: -109px;
+    width: 200px;
+    height: 80px;
+    background-color: transparent;
+    margin: 50px;
+    overflow: hidden;
+  }
+
+  .scooped-box::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 40px;
+    height: 30px;
+    border-radius: 40px;
+    box-shadow: 0 0 0 250px rgba(15, 16, 16, 1);
+    z-index: 1;
+  }
 
   //.footer-right::before {
   //  content: "";
