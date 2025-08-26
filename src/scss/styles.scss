@@ -357,7 +357,7 @@ body {
     //align-items: center;
     gap: 15px;
     height: 100%;
-    width: 68.5%;
+    width: 70%;
     flex-shrink: 0;
 
     .logo-2025 {
@@ -404,11 +404,11 @@ body {
 
 
     .controls-container {
-      padding-right: 1.9rem;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
+      gap: 27px;
     }
 
     .arrow-btn {
@@ -447,7 +447,7 @@ body {
   }
   .scooped-box {
     position: absolute;
-    left: -440px;
+    left: -439.5px;
     bottom: -60px;
     width: 400px;
     height: 150px;
@@ -471,8 +471,8 @@ body {
 }
 
 .content {
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
   margin-top: 10rem;
 
   .content_wostour {
@@ -729,8 +729,8 @@ body {
 
 
   .footer-top, .footer-bottom {
-    margin-left: 5rem;
-    margin-right: 5rem;
+    margin-left: 3.5rem;
+    margin-right: 3.5rem;
   }
 
   .footer-bottom {
