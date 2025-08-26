@@ -45,7 +45,7 @@ body {
 
 // Стили для header
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -55,9 +55,92 @@ body {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1)
 ;
+  .navbar-nav .nav-item {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:not(.custom-select) {
+    color: white !important;
+    text-decoration: none;
+    background: none !important;
+    border: none !important;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+    position: relative;
+  }
+
+  .navbar-nav .nav-link:not(.custom-select):hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+  }
+
+  /* Подчеркивание при hover для обычных ссылок */
+  //.navbar-nav .nav-link:not(.custom-select)::after {
+  //  content: '';
+  //  position: absolute;
+  //  bottom: 0;
+  //  left: 0;
+  //  width: 0;
+  //  height: 2px;
+  //  background: white;
+  //  transition: width 0.3s ease;
+  //}
+
+  .navbar-nav .nav-link:not(.custom-select):hover::after {
+    width: 100%;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Hover эффект для флага */
+  .flag {
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .flag:hover {
+    transform: scale(1.1) translateY(-2px);
+    filter: brightness(1.2);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Hover эффект для user-logo */
+  .user-logo {
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .user-logo:hover {
+    transform: scale(1.1) translateY(-2px);
+    filter: brightness(1.2);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Hover эффект для кнопки */
+  .header-right .btn {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .header-right .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+    background: white !important;
+    color: black !important;
+    border-color: white;
+  }
+
   .custom-select-wrapper {
     position: relative;
     display: inline-block;
+    transition: all 0.3s ease;
+  }
+  .custom-select-wrapper:hover {
+    transform: translateY(-2px);
   }
 
   .custom-select {
@@ -274,7 +357,7 @@ body {
     //align-items: center;
     gap: 15px;
     height: 100%;
-    width: 70%;
+    width: 68.5%;
     flex-shrink: 0;
 
     .logo-2025 {
@@ -342,9 +425,9 @@ body {
       transition: all 0.2s ease;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 
-      &:hover {
-        background: white;
-      }
+      //&:hover {
+      //  background: white;
+      //}
     }
 
     .divider {
@@ -364,7 +447,7 @@ body {
   }
   .scooped-box {
     position: absolute;
-    left: -438px;
+    left: -440px;
     bottom: -60px;
     width: 400px;
     height: 150px;
@@ -383,6 +466,7 @@ body {
     border-bottom-right-radius: 40px;
     box-shadow: 0 0 0 400px rgba(15, 16, 16, 1);
     z-index: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 40px, 40px 0);
   }
 }
 
@@ -431,6 +515,15 @@ body {
 
 
   .features-cards {
+    .feature-card-footer .bi-arrow-right {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .feature-card-footer .bi-arrow-right:hover {
+      transform: translateX(5px); /* Сдвиг вправо */
+      color: blue !important; /* Изменение цвета */
+    }
     .feature-card {
       flex: 1;
       min-height: 300px;
@@ -544,9 +637,51 @@ body {
   padding-top: 3rem;
   padding-bottom: 3rem;
 
+
+  .navbar-nav .nav-item {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:not(.custom-select) {
+    color: white !important;
+    text-decoration: none;
+    background: none !important;
+    border: none !important;
+    transition: all 0.3s ease;
+    padding: 0.5rem 0;
+    position: relative;
+  }
+
+  .navbar-nav .nav-link:not(.custom-select):hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+  }
+
+  /* Подчеркивание при hover для обычных ссылок */
+  //.navbar-nav .nav-link:not(.custom-select)::after {
+  //  content: '';
+  //  position: absolute;
+  //  bottom: 0;
+  //  left: 0;
+  //  width: 0;
+  //  height: 2px;
+  //  background: white;
+  //  transition: width 0.3s ease;
+  //}
+
+  .navbar-nav .nav-link:not(.custom-select):hover::after {
+    width: 100%;
+  }
+
+
   .custom-select-wrapper {
     position: relative;
     display: inline-block;
+    transition: all 0.3s ease;
+  }
+  .custom-select-wrapper:hover {
+    transform: translateY(-2px);
   }
 
   .custom-select {
@@ -610,6 +745,28 @@ body {
   .social-links img {
     width: 24px;
     height: 24px;
+  }
+
+  .footer-links p {
+    color: rgba(94, 94, 94, 1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin: 0;
+  }
+
+  .footer-links p:hover {
+    color: white !important;
+    transform: translateY(-1px);
+  }
+
+  .social-links img {
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .social-links img:hover {
+    transform: scale(1.2);
+    filter: brightness(1.3);
   }
 }
 
