@@ -544,6 +544,54 @@ body {
   padding-top: 3rem;
   padding-bottom: 3rem;
 
+  .custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    padding: 0.5rem 25px 0.5rem 0;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Для IE */
+  .custom-select::-ms-expand {
+    display: none;
+  }
+
+  .custom-arrow {
+    position: absolute;
+    top: 53%;
+    right: 2px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1;
+    color: white;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .custom-select:focus ~ .custom-arrow {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  /* Стили для наведения */
+  .custom-select:hover {
+    opacity: 0.8;
+  }
+
 
   .footer-top, .footer-bottom {
     margin-left: 5rem;
@@ -805,6 +853,8 @@ body {
   }
 
   .main-footer {
+
+
     .footer-top, .footer-bottom {
       margin-left: 1rem;
       margin-right: 1rem;
