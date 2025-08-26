@@ -26,15 +26,15 @@ body {
   display: flex;
   flex-direction: column;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-  }
+  //&::before {
+  //  content: '';
+  //  position: absolute;
+  //  top: 0;
+  //  left: 0;
+  //  width: 100%;
+  //  height: 100%;
+  //  z-index: 0;
+  //}
 }
 
 .main-content {
@@ -55,6 +55,68 @@ body {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1)
 ;
+  .custom-select-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    padding: 0.5rem 25px 0.5rem 0;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Для IE */
+  .custom-select::-ms-expand {
+    display: none;
+  }
+
+  .custom-arrow {
+    position: absolute;
+    top: 53%;
+    right: 2px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1;
+    color: white;
+    font-size: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .custom-select:focus ~ .custom-arrow {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  /* Стили для наведения */
+  .custom-select:hover {
+    opacity: 0.8;
+  }
+
+  /* Сохраняем стили nav-link */
+  .nav-link {
+    color: white !important;
+    text-decoration: none;
+    background: none !important;
+    border: none !important;
+  }
+
+  /* Убираем стандартные стили select */
+  .custom-select:focus {
+    outline: none;
+    box-shadow: none;
+    border: none;
+  }
 
   .navbar {
     //max-width: 1200px;
@@ -88,10 +150,11 @@ body {
   }
 
   //// Адаптивные логотипы
-  //.header-logo {
-  //  width: 122px;
-  //  height: 80px;
-  //}
+  .header-logo {
+    //width: 122px;
+    //height: 80px;
+    margin-bottom: 2px;
+  }
 
   .header-logo-mobile {
     width: 80px;
@@ -159,6 +222,8 @@ body {
       box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
     }
   }
+
+
 
   // Убираем отступы между колонками
   .row.gx-0 .col-md-6,
@@ -256,6 +321,7 @@ body {
 
 
     .controls-container {
+      padding-right: 1.9rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -298,10 +364,10 @@ body {
   }
   .scooped-box {
     position: absolute;
-    left: -80px;
-    bottom: -109px;
-    width: 200px;
-    height: 80px;
+    left: -438px;
+    bottom: -60px;
+    width: 400px;
+    height: 150px;
     background-color: transparent;
     margin: 50px;
     overflow: hidden;
@@ -312,27 +378,12 @@ body {
     position: absolute;
     top: -10px;
     left: -10px;
-    width: 40px;
-    height: 30px;
-    border-radius: 40px;
-    box-shadow: 0 0 0 250px rgba(15, 16, 16, 1);
+    width: 400px;
+    height: 150px;
+    border-bottom-right-radius: 40px;
+    box-shadow: 0 0 0 400px rgba(15, 16, 16, 1);
     z-index: 1;
   }
-
-  //.footer-right::before {
-  //  content: "";
-  //  position: absolute;
-  //  bottom: 40px;    /* Размещаем элемент СНИЗУ от родителя */
-  //  left: -40px;      /* Прижимаем к левому краю (с выносом наружу) */
-  //  height: 40px;
-  //  width: 40px;
-  //  border-bottom-left-radius: 50%; /* Закругляем нижний левый угол */
-  //  background-color: transparent;
-  //  box-shadow: 0 20px 0 0 rgba(15, 16, 16, 1); /* Тень ВНИЗ */
-  //  z-index: 1;
-  //}
-
-
 }
 
 .content {
@@ -404,6 +455,18 @@ body {
     color: white;
   }
 
+
+  //.moni {
+  //  position: absolute;
+  //  width: 400px;
+  //  height: 400px;
+  //}
+
+  .balvanka{
+    width: 200px;
+    height: 100px;
+  }
+
   .grid-container {
     display: grid;
     grid-template-columns: 1fr 1.5fr;
@@ -439,14 +502,19 @@ body {
       grid-template-columns: 1fr 2fr;
       gap: 1.5rem;
       align-items: center;
+      padding-top: 0;
+      padding-bottom: 1rem;
 
       img {
-        width: 100%;
-        max-width: 180px;
-        height: auto;
+        //width: 100%;
+        //max-width: 180px;
+        //height: auto;
+        margin-left: 2rem;
       }
 
       .card-content {
+        //padding-top: 2rem;
+
         h3 {
           font-size: 1.5rem;
           margin-bottom: 0.5rem;
@@ -671,8 +739,8 @@ body {
   }
 
   .content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 5rem;
+    padding-right: 5rem;
     margin-top: 3rem;
 
     .content_wostour {
