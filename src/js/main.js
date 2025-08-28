@@ -61,3 +61,13 @@ checkRoute();
 //         document.getElementById('header-placeholder').innerHTML = html;
 //     })
 //     .catch(error => console.error('Ошибка загрузки header.html:', error));
+
+
+const screenWidth = window.innerWidth;
+console.log('Ширина экрана:', screenWidth, 'px');
+
+// Для отслеживания изменений размера окна
+window.addEventListener('resize', function() {
+    const currentWidth = window.innerWidth;
+    console.log('Текущая ширина:', currentWidth, 'px');
+});
