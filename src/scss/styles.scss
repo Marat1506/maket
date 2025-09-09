@@ -795,7 +795,7 @@ body {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
 
-      .notification-img:hover{
+      .notification-img:hover {
         transform: scale(1.05);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         cursor: pointer;
@@ -803,38 +803,51 @@ body {
     }
 
     .side-card {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 1.5rem;
-      align-items: center;
-      padding-top: 0;
-      padding-bottom: 1rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: center; // Горизонтальное центрирование содержимого
+      gap: 2rem; // Расстояние между картинкой и текстом
 
-      img {
-        width: 100%;
-        height: 100%;
-        margin-left: 2rem;
+      padding-bottom: 1rem;
+      height: 100%; // Карточка занимает полную высоту в гриде
+
+      img.moni {
+        width: auto; // Сохраняем пропорции
+        height: 100%; // Картинка растягивается на всю высоту карточки
+        max-width: 250px; // Ограничение ширины
+        flex-shrink: 0; // Картинка не сжимается
+        margin: 0; // Без отступов
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+
       }
-      img:hover {
+
+      img.moni:hover {
         transform: scale(1.05);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         cursor: pointer;
       }
 
       .card-content {
-        //padding-top: 2rem;
-
-        h3 {
-          font-size: 1.5rem;
-          margin-bottom: 0.5rem;
-          color: white;
-        }
+        flex: 1; // Текст занимает оставшееся место
+        display: flex;
+        flex-direction: column;
+        justify-content: center; // Вертикальное центрирование текста относительно высоты карточки
+        align-items: flex-start; // Текст выровнен по левому краю (можно заменить на center)
+        padding: 0;
+        margin: 0;
 
         p {
-          opacity: 0.8;
-          font-size: 1rem;
+          margin: 0 0 0.5rem 0; // Отступ между параграфами
+          font-weight: 600;
+          font-size: 23px;
           color: white;
+
+          &:last-child {
+            font-weight: 400;
+            font-size: 16px;
+            color: rgba(154, 154, 154, 1);
+            margin-bottom: 0;
+          }
         }
       }
     }
@@ -842,9 +855,9 @@ body {
 
   .card {
     background: rgba(0, 0, 0, 1) !important;
-    border-radius: 12px;
-    padding: 2rem;
+    border-radius: 16px; // Синхронизировано с inline-style
     color: white;
+    padding-bottom: 1rem;
   }
 }
 
@@ -875,22 +888,9 @@ body {
     transform: translateY(-2px);
   }
 
-  /* Подчеркивание при hover для обычных ссылок */
-  //.navbar-nav .nav-link:not(.custom-select)::after {
-  //  content: '';
-  //  position: absolute;
-  //  bottom: 0;
-  //  left: 0;
-  //  width: 0;
-  //  height: 2px;
-  //  background: white;
-  //  transition: width 0.3s ease;
-  //}
-
   .navbar-nav .nav-link:not(.custom-select):hover::after {
     width: 100%;
   }
-
 
   .custom-select-wrapper {
     position: relative;
@@ -925,13 +925,16 @@ body {
 
   .custom-arrow {
     position: absolute;
-    top: 53%;
-    right: 2px;
+    top: 50%; /* Изменено с 53% на 50% для точного центрирования */
+    right: 15px; /* Увеличено с 2px до 8px для отступа от края */
     transform: translateY(-50%);
+    background: transparent; /* Убрал background: white, так как это может создавать белый квадрат */
+    color: white !important; /* Усилено !important для цвета символа */
     pointer-events: none;
-    z-index: 1;
-    color: white;
-    font-size: 10px;
+    z-index: 3; /* Увеличено z-index выше select */
+    font-size: 8px; /* Увеличено с 10px для лучшей видимости */
+
+    line-height: 1; /* Добавлено для точного позиционирования символа */
     transition: transform 0.3s ease;
   }
 
@@ -944,8 +947,20 @@ body {
     opacity: 0.8;
   }
 
+  /* Дополнительно: Убедимся, что фон не перекрывает стрелку */
+  .custom-select-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 1;
+  }
 
-  .footer-top, .footer-bottom {
+
+  .footer-top, .footer-bottom, .footer-divider {
     margin-left: 3.5rem;
     margin-right: 3.5rem;
   }
