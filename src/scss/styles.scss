@@ -994,14 +994,20 @@ body {
     button {
       align-self: flex-start; /* Выравниваем кнопку по левому краю */
       width: auto; /* Отменяем растягивание на всю ширину */
-      
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+      }
+
       // Адаптивные размеры кнопки для больших экранов
       @media (min-width: 1537px) {
         width: calc(251px + (100vw - 1536px) * 0.1) !important;
         height: calc(55px + (100vw - 1536px) * 0.03) !important;
         font-size: calc(19px + (100vw - 1536px) * 0.01) !important;
       }
-      
+
       @media (min-width: 3840px) {
         width: calc(251px + (100vw - 1536px) * 0.12) !important;
         height: calc(55px + (100vw - 1536px) * 0.04) !important;
