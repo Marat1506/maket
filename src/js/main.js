@@ -152,6 +152,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSlide = 0;
     let isAnimating = false;
     const totalSlides = slides.length;
+    
+    // Auto-slide variables
+    let autoSlideInterval = null;
+    const autoSlideDelay = 5000; // 5 seconds
 
     // Helper to format slide number as 01, 02...
     function formatSlideNumber(index) {
@@ -162,6 +166,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update slide number display
     function updateSlideNumber() {
         slideNumberEl.textContent = formatSlideNumber(currentSlide);
+    }
+
+    // Start auto-slide functionality
+    function startAutoSlide() {
+        // Clear any existing interval
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+        }
+        
+        // Set new interval
+        autoSlideInterval = setInterval(() => {
+            nextSlide();
+        }, autoSlideDelay);
+    }
+
+    // Stop auto-slide functionality
+    function stopAutoSlide() {
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
+        }
+    }
+
+    // Restart auto-slide (useful when manually navigating)
+    function restartAutoSlide() {
+        stopAutoSlide();
+        startAutoSlide();
     }
 
     // Move carousel to specific slide
@@ -193,12 +224,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function nextSlide() {
         const nextIndex = (currentSlide + 1) % totalSlides;
         goToSlide(nextIndex);
+        // Restart auto-slide timer when manually navigating
+        restartAutoSlide();
     }
 
     // Go to previous slide
     function prevSlide() {
         const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
         goToSlide(prevIndex);
+        // Restart auto-slide timer when manually navigating
+        restartAutoSlide();
     }
 
     // Initialize carousel
@@ -209,6 +244,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Set first slide as active
         slides[0].classList.add('active');
+        
+        // Start auto-slide
+        startAutoSlide();
     }
 
     // Event listeners
@@ -220,6 +258,16 @@ document.addEventListener('DOMContentLoaded', () => {
     prevBtn.addEventListener('click', (e) => {
         e.preventDefault();
         prevSlide();
+    });
+
+    // Pause auto-slide on hover
+    footer.addEventListener('mouseenter', () => {
+        stopAutoSlide();
+    });
+
+    // Resume auto-slide when mouse leaves
+    footer.addEventListener('mouseleave', () => {
+        startAutoSlide();
     });
 
     // Initialize the carousel

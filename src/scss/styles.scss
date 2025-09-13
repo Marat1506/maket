@@ -368,7 +368,7 @@ body {
     justify-content: center;
     
     // Адаптивные размеры карточек для больших экранов
-     @media (min-width: 1080px) {
+     @media (max-width: 1080px) {
       width: calc(173px + (100vw - 1080px) * 0.1);
       height: calc(135px + (100vw - 1080px) * 0.08);
     }
@@ -414,7 +414,7 @@ body {
     font-size: 55px !important;
     font-weight: 700 !important;
     
-    @media (min-width: 1080px) {
+    @media (max-width: 1080px) {
       font-size: calc(35px + (100vw - 1080px) * 0.03) !important;
     }
     @media (min-width: 1537px) {
@@ -436,7 +436,7 @@ body {
     font-size: 30px !important;
     font-weight: 400 !important;
     
-    @media (min-width: 1080px) {
+    @media (max-width: 1080px) {
       font-size: calc(25px + (100vw - 1080px) * 0.015) !important;
     }
 
