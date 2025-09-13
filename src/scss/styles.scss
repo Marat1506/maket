@@ -368,6 +368,10 @@ body {
     justify-content: center;
     
     // Адаптивные размеры карточек для больших экранов
+     @media (min-width: 1080px) {
+      width: calc(173px + (100vw - 1080px) * 0.1);
+      height: calc(135px + (100vw - 1080px) * 0.08);
+    }
     @media (min-width: 1537px) {
       width: calc(193px + (100vw - 1536px) * 0.1);
       height: calc(145px + (100vw - 1536px) * 0.08);
@@ -410,6 +414,9 @@ body {
     font-size: 55px !important;
     font-weight: 700 !important;
     
+    @media (min-width: 1080px) {
+      font-size: calc(35px + (100vw - 1080px) * 0.03) !important;
+    }
     @media (min-width: 1537px) {
       font-size: calc(55px + (100vw - 1536px) * 0.03) !important;
     }
@@ -429,6 +436,10 @@ body {
     font-size: 30px !important;
     font-weight: 400 !important;
     
+    @media (min-width: 1080px) {
+      font-size: calc(25px + (100vw - 1080px) * 0.015) !important;
+    }
+
     @media (min-width: 1537px) {
       font-size: calc(30px + (100vw - 1536px) * 0.015) !important;
     }
@@ -539,6 +550,97 @@ body {
   z-index: 2;
   //border-top: 1px solid rgba(255, 255, 255, 0.1);
   
+  // Carousel container styles
+  .carousel-container {
+    width: 70%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .carousel-track {
+    display: flex;
+    width: 400%; // 4 slides * 100%
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(0%);
+  }
+  
+  .carousel-slide {
+    width: 25%; // 100% / 4 slides
+    height: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    
+    .footer-left {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-top-right-radius: 10px;
+      display: flex;
+      gap: 15px;
+      flex-shrink: 0;
+      
+      .logo-2025 {
+        width: auto;
+        height: auto;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+
+      .tournament-info {
+        margin-top: 2rem;
+        
+        // Адаптивные отступы для больших экранов
+        @media (min-width: 1537px) {
+          margin-top: calc(2rem + (100vw - 1536px) * 0.02);
+        }
+
+        @media (min-width: 3840px) {
+          margin-left: 5rem;
+        }
+        
+        .date {
+          color: rgba(255, 255, 255, 1);
+          font-size: 15px;
+          font-weight: 400;
+          margin-bottom: 15px;
+          
+          // Адаптивные размеры для больших экранов
+          @media (min-width: 1537px) {
+            font-size: calc(15px + (100vw - 1536px) * 0.005);
+            margin-bottom: calc(15px + (100vw - 1536px) * 0.005);
+          }
+        }
+        .tournament-title {
+          color: #fff;
+          font-size: 22px;
+          font-weight: 700;
+          margin-bottom: 5px;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+          
+          // Адаптивные размеры для больших экранов
+          @media (min-width: 1537px) {
+            font-size: calc(22px + (100vw - 1536px) * 0.01);
+            margin-bottom: calc(5px + (100vw - 1536px) * 0.003);
+          }
+        }
+        .location {
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 16px;
+          font-weight: 400;
+          
+          // Адаптивные размеры для больших экранов
+          @media (min-width: 1537px) {
+            font-size: calc(16px + (100vw - 1536px) * 0.008);
+          }
+        }
+      }
+    }
+  }
+  
   // Адаптивная высота для больших экранов
   @media (min-width: 1537px) {
     height: calc(169px + (100vw - 1536px) * 0.05);
@@ -549,72 +651,29 @@ body {
     height: calc(169px + (100vw - 1536px) * 0.08);
   }
 
-  .footer-left {
-    border: none;
-    border-top-right-radius: 10px;
-    display: flex;
-    //align-items: center;
-    gap: 15px;
-    height: 100%;
-    width: 70%;
-    flex-shrink: 0;
+  // 1024–1536: немного компактнее высота, текст и картинка
+  @media (min-width: 1024px) and (max-width: 1536px) {
+    height: clamp(150px, 14vw, 165px);
 
-    .logo-2025 {
-      width: auto;
-      height: auto;
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
-    }
+    .carousel-slide .footer-left {
+      .tournament-info {
+        margin-top: clamp(1.2rem, 2.2vw, 1.6rem);
 
-    .tournament-info {
-      margin-top: 2rem;
-      
-      // Адаптивные отступы для больших экранов
-      @media (min-width: 1537px) {
-        margin-top: calc(2rem + (100vw - 1536px) * 0.02);
-      }
-
-      @media (min-width: 3840px) {
-        margin-left: 5rem;
-      }
-      
-      .date {
-        color: rgba(255, 255, 255, 1);
-        font-size: 15px;
-        font-weight: 400;
-        margin-bottom: 15px;
-        
-        // Адаптивные размеры для больших экранов
-        @media (min-width: 1537px) {
-          font-size: calc(15px + (100vw - 1536px) * 0.005);
-          margin-bottom: calc(15px + (100vw - 1536px) * 0.005);
+        .date {
+          font-size: clamp(13px, 1.2vw, 14px);
+          margin-bottom: clamp(10px, 1.2vw, 12px);
         }
-      }
-      .tournament-title {
-        color: #fff;
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 5px;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-        
-        // Адаптивные размеры для больших экранов
-        @media (min-width: 1537px) {
-          font-size: calc(22px + (100vw - 1536px) * 0.01);
-          margin-bottom: calc(5px + (100vw - 1536px) * 0.003);
+        .tournament-title {
+          font-size: clamp(20px, 1.9vw, 22px);
+          margin-bottom: clamp(4px, 0.6vw, 5px);
         }
-      }
-      .location {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 16px;
-        font-weight: 400;
-        
-        // Адаптивные размеры для больших экранов
-        @media (min-width: 1537px) {
-          font-size: calc(16px + (100vw - 1536px) * 0.008);
+        .location {
+          font-size: clamp(14px, 1.6vw, 16px);
         }
       }
     }
   }
+
 
   .footer-right {
     position: relative;
@@ -658,9 +717,12 @@ body {
         font-size: calc(1.3rem + (100vw - 1536px) * 0.01);
       }
 
-      //&:hover {
-      //  background: white;
-      //}
+      // 1024px: чуть компактнее стрелки и размер иконки
+      @media (min-width: 1024px) and (max-width: 1536px) {
+        width: clamp(48px, 4.2vw, 56px);
+        height: clamp(48px, 4.2vw, 56px);
+        font-size: clamp(1.1rem, 1.3vw, 1.25rem);
+      }
     }
 
     .divider {
@@ -676,6 +738,10 @@ body {
         height: calc(2px + (100vw - 1536px) * 0.001);
         margin: 0 calc(5px + (100vw - 1536px) * 0.002);
       }
+      // 1024px: короче разделитель
+      @media (min-width: 1024px) and (max-width: 1536px) {
+        width: clamp(64px, 6.2vw, 80px);
+      }
     }
 
     .slide-number {
@@ -689,10 +755,14 @@ body {
         font-size: calc(49px + (100vw - 1536px) * 0.02);
         margin-right: calc(20px + (100vw - 1536px) * 0.02);
       }
+      // 1024px: меньше цифры
+      @media (min-width: 1024px) and (max-width: 1536px) {
+        font-size: clamp(36px, 3.4vw, 44px);
+      }
     }
   }
   @media (max-width: 1524px) {
-    .footer-left {
+    .carousel-container {
       width: 69.8%;
     }
     .footer-right {
@@ -702,7 +772,7 @@ body {
 
   // 1514px (уменьшение на 20px)
   @media (max-width: 1514px) {
-    .footer-left {
+    .carousel-container {
       width: 69.6%;
     }
     .footer-right {
@@ -712,7 +782,7 @@ body {
 
   // 1504px (уменьшение на 30px)
   @media (max-width: 1504px) {
-    .footer-left {
+    .carousel-container {
       width: 69.4%;
     }
     .footer-right {
@@ -722,7 +792,7 @@ body {
 
   // 1494px (уменьшение на 40px)
   @media (max-width: 1494px) {
-    .footer-left {
+    .carousel-container {
       width: 69.2%;
     }
     .footer-right {
@@ -732,7 +802,7 @@ body {
 
   // 1484px (уменьшение на 50px)
   @media (max-width: 1484px) {
-    .footer-left {
+    .carousel-container {
       width: 69.0%;
     }
     .footer-right {
@@ -742,7 +812,7 @@ body {
 
   // 1474px (уменьшение на 60px)
   @media (max-width: 1474px) {
-    .footer-left {
+    .carousel-container {
       width: 68.8%;
     }
     .footer-right {
@@ -752,7 +822,7 @@ body {
 
   // 1464px (уменьшение на 70px)
   @media (max-width: 1464px) {
-    .footer-left {
+    .carousel-container {
       width: 68.6%;
     }
     .footer-right {
@@ -762,7 +832,7 @@ body {
 
   // 1454px (уменьшение на 80px)
   @media (max-width: 1454px) {
-    .footer-left {
+    .carousel-container {
       width: 68.4%;
     }
     .footer-right {
@@ -772,7 +842,7 @@ body {
 
   // 1444px (уменьшение на 90px)
   @media (max-width: 1444px) {
-    .footer-left {
+    .carousel-container {
       width: 68.2%;
     }
     .footer-right {
@@ -782,7 +852,7 @@ body {
 
   // 1434px (уменьшение на 100px)
   @media (max-width: 1434px) {
-    .footer-left {
+    .carousel-container {
       width: 68.0%;
     }
     .footer-right {
@@ -792,7 +862,7 @@ body {
 
   // 1424px (уменьшение на 110px)
   @media (max-width: 1424px) {
-    .footer-left {
+    .carousel-container {
       width: 67.8%;
     }
     .footer-right {
@@ -802,7 +872,7 @@ body {
 
   // 1414px (уменьшение на 120px)
   @media (max-width: 1414px) {
-    .footer-left {
+    .carousel-container {
       width: 67.6%;
     }
     .footer-right {
@@ -812,7 +882,7 @@ body {
 
   // 1404px (уменьшение на 130px)
   @media (max-width: 1404px) {
-    .footer-left {
+    .carousel-container {
       width: 67.4%;
     }
     .footer-right {
@@ -822,7 +892,7 @@ body {
 
   // 1394px (уменьшение на 140px)
   @media (max-width: 1394px) {
-    .footer-left {
+    .carousel-container {
       width: 67.2%;
     }
     .footer-right {
@@ -832,7 +902,7 @@ body {
 
   // 1384px (уменьшение на 150px)
   @media (max-width: 1384px) {
-    .footer-left {
+    .carousel-container {
       width: 67.0%;
     }
     .footer-right {
@@ -842,7 +912,7 @@ body {
 
   // 1374px (уменьшение на 160px)
   @media (max-width: 1374px) {
-    .footer-left {
+    .carousel-container {
       width: 66.8%;
     }
     .footer-right {
@@ -852,7 +922,7 @@ body {
 
   // 1364px (уменьшение на 170px)
   @media (max-width: 1364px) {
-    .footer-left {
+    .carousel-container {
       width: 66.6%;
     }
     .footer-right {
@@ -862,7 +932,7 @@ body {
 
   // 1354px (уменьшение на 180px)
   @media (max-width: 1354px) {
-    .footer-left {
+    .carousel-container {
       width: 66.4%;
     }
     .footer-right {
@@ -872,7 +942,7 @@ body {
 
   // 1344px (уменьшение на 190px)
   @media (max-width: 1344px) {
-    .footer-left {
+    .carousel-container {
       width: 66.2%;
     }
     .footer-right {
@@ -882,13 +952,24 @@ body {
 
   // 1334px (уменьшение на 200px)
   @media (max-width: 1334px) {
-    .footer-left {
+    .carousel-container {
       width: 66.0%;
     }
     .footer-right {
       width: 34.0%;
     }
   }
+
+  @media (max-width: 1080px) {
+    .carousel-container {
+      width: 61.0%;
+    }
+    .footer-right {
+      width: 39.0%;
+    }
+  }
+
+  
   .scooped-box {
     position: absolute;
     left: -439.5px;
@@ -970,6 +1051,9 @@ body {
       
       // Адаптивные размеры текста для больших экранов
       p {
+         @media (min-width: 1080px) {
+          font-size: calc(20px + (100vw - 1080px) * 0.02) !important;
+        }
         @media (min-width: 1537px) {
           font-size: calc(32px + (100vw - 1536px) * 0.02) !important;
         }
@@ -980,6 +1064,9 @@ body {
         
         // Для второго параграфа (меньший текст)
         &:nth-child(2) {
+          @media (min-width: 1080px) {
+            font-size: calc(15px + (100vw - 1080px) * 0.01) !important;
+          }
           @media (min-width: 1537px) {
             font-size: calc(18px + (100vw - 1536px) * 0.01) !important;
           }
@@ -1082,6 +1169,9 @@ body {
       p {
         // Заголовки карточек
         &:first-child {
+          @media (min-width: 1080px) {
+            font-size: calc(26px + (100vw - 1080px) * 0.02) !important;
+          }
           @media (min-width: 1537px) {
             font-size: calc(28px + (100vw - 1536px) * 0.02) !important;
           }
@@ -1149,6 +1239,9 @@ body {
     @media (min-width: 1920px) {
       font-size: 50px;
     }
+    @media (min-width: 1080px) {
+      font-size: 40px;
+    }
   }
 
 
@@ -1176,6 +1269,9 @@ body {
     }
     @media (min-width: 1920px) {
       font-size: 35px;
+    }
+    @media (min-width: 1080px) {
+      font-size: 25px;
     }
   }
 
@@ -1236,6 +1332,10 @@ body {
           width: 80%;
           margin-top: 5rem;
         }
+        @media (min-width: 1080px) {
+          width: 80%;
+          margin-top: 1rem;
+        }
       }
 
       .notification-img:hover {
@@ -1275,6 +1375,10 @@ body {
           max-width: 400px !important;
         }
 
+         @media (min-width: 1080px) {
+          max-width: 200px !important;
+        }
+
       }
 
       img.moni:hover {
@@ -1303,6 +1407,9 @@ body {
           @media (min-width: 2560px) {
             font-size: 50px;
           }
+          @media (min-width: 1080px) {
+            font-size: 25px;
+          }
 
         }
 
@@ -1317,6 +1424,9 @@ body {
           @media (min-width: 2560px) {
             font-size: 50px;
           }
+          @media (min-width: 1080px) {
+            font-size: 20px;
+          }
 
         }
         .card_text{
@@ -1330,6 +1440,9 @@ body {
           }
           @media (min-width: 2560px) {
             font-size: 25px;
+          }
+          @media (min-width: 2080px) {
+            font-size: 20px;
           }
         }
       }
