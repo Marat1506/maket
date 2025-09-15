@@ -72,23 +72,25 @@ window.addEventListener('resize', function() {
     console.log('Текущая ширина:', currentWidth, 'px');
 });
 
-// Mobile sidebar close functionality (without Bootstrap)
+// Mobile sidebar functionality
 document.addEventListener('DOMContentLoaded', () => {
-    const navbarToggler = document.querySelector('#mobile-menu-toggler');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const mobileMenuBtn = document.querySelector('#mobile-menu-btn');
+    const mobileSidebar = document.querySelector('#mobile-sidebar');
+    const sidebarClose = document.querySelector('#sidebar-close');
+    const sidebarOverlay = document.querySelector('#sidebar-overlay');
     
-    if (navbarToggler && navbarCollapse) {
+    if (mobileMenuBtn && mobileSidebar) {
         let isOpen = false;
 
         function openSidebar() {
-            navbarCollapse.classList.add('show');
-            navbarToggler.setAttribute('aria-expanded', 'true');
+            mobileSidebar.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
             isOpen = true;
         }
 
         function closeSidebar() {
-            navbarCollapse.classList.remove('show');
-            navbarToggler.setAttribute('aria-expanded', 'false');
+            mobileSidebar.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
             isOpen = false;
         }
 
@@ -101,25 +103,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Toggle on button click
-        navbarToggler.addEventListener('click', (e) => {
+        mobileMenuBtn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             toggleSidebar();
         });
         
-        // Close when clicking outside
-        document.addEventListener('click', (e) => {
-            const isClickInsideNav = navbarCollapse.contains(e.target);
-            const isClickOnToggler = navbarToggler.contains(e.target);
-            
-            if (!isClickInsideNav && !isClickOnToggler && isOpen) {
+        // Close on close button click
+        if (sidebarClose) {
+            sidebarClose.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 closeSidebar();
-            }
-        });
+            });
+        }
+        
+        // Close on overlay click
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                closeSidebar();
+            });
+        }
         
         // Close on nav link click
-        const navLinks = navbarCollapse.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
+        const sidebarNavLinks = mobileSidebar.querySelectorAll('.sidebar-nav-link');
+        sidebarNavLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (isOpen) {
                     closeSidebar();
@@ -272,4 +282,114 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize the carousel
     initCarousel();
+});
+
+// Tournament footer mobile carousel with automatic sliding
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileFooter = document.querySelector('.tournament-footer-mobile');
+    if (!mobileFooter) return;
+
+    const carouselTrack = mobileFooter.querySelector('.carousel-track');
+    const slides = mobileFooter.querySelectorAll('.carousel-slide');
+
+    if (!carouselTrack || !slides.length) return;
+
+    let currentSlide = 0;
+    let isAnimating = false;
+    const totalSlides = slides.length;
+    
+    // Auto-slide variables
+    let autoSlideInterval = null;
+    const autoSlideDelay = 5000; // 5 seconds
+
+    // Move carousel to specific slide
+    function goToSlide(index) {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        // Remove active class from all slides
+        slides.forEach(slide => slide.classList.remove('active'));
+        
+        // Add active class to current slide
+        slides[index].classList.add('active');
+        
+        // Calculate transform value for horizontal sliding
+        // Since track is 400% wide and each slide is 25%, we move by 25% of track width per slide
+        // But we need to ensure we don't go beyond the last slide
+        const translateX = -index * 25;
+        
+        // Ensure the track doesn't go beyond the container bounds
+        const maxTranslateX = -75; // Maximum translation for the last slide (3 * 25%)
+        const clampedTranslateX = Math.max(translateX, maxTranslateX);
+        carouselTrack.style.transform = `translateX(${clampedTranslateX}%)`;
+        
+        currentSlide = index;
+        
+        // Reset animation flag after transition completes
+        setTimeout(() => {
+            isAnimating = false;
+        }, 500); // Match CSS transition duration
+    }
+
+    // Go to next slide
+    function nextSlide() {
+        const nextIndex = (currentSlide + 1) % totalSlides;
+        goToSlide(nextIndex);
+    }
+
+    // Start auto-slide functionality
+    function startAutoSlide() {
+        // Clear any existing interval
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+        }
+        
+        // Set new interval
+        autoSlideInterval = setInterval(() => {
+            nextSlide();
+        }, autoSlideDelay);
+    }
+
+    // Stop auto-slide functionality
+    function stopAutoSlide() {
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
+        }
+    }
+
+    // Initialize mobile carousel
+    function initMobileCarousel() {
+        // Set initial position
+        carouselTrack.style.transform = 'translateX(0%)';
+        
+        // Set first slide as active
+        slides[0].classList.add('active');
+        
+        // Start auto-slide
+        startAutoSlide();
+    }
+
+    // Pause auto-slide on touch start
+    mobileFooter.addEventListener('touchstart', () => {
+        stopAutoSlide();
+    });
+
+    // Resume auto-slide when touch ends
+    mobileFooter.addEventListener('touchend', () => {
+        startAutoSlide();
+    });
+
+    // Pause auto-slide on mouse enter (for desktop testing)
+    mobileFooter.addEventListener('mouseenter', () => {
+        stopAutoSlide();
+    });
+
+    // Resume auto-slide when mouse leaves (for desktop testing)
+    mobileFooter.addEventListener('mouseleave', () => {
+        startAutoSlide();
+    });
+
+    // Initialize the mobile carousel
+    initMobileCarousel();
 });

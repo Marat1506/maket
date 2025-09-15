@@ -53,11 +53,7 @@
                 <!-- Логотип с адаптивными размерами -->
 
 
-                <!-- Кнопка мобильного меню -->
-                <!--                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"-->
-                <!--                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
-                <!--                    <span class="navbar-toggler-icon"></span>-->
-                <!--                </button>-->
+
 
                 <!-- Навигационное меню -->
 
@@ -65,23 +61,70 @@
 
                 <!-- Правая часть с флагом, пользователем и кнопкой -->
                 <div class="header-right d-flex align-items-center">
-                    <img src="./Frame%2011.png" alt="Russia Flag" class="flag me-2 me-md-3" />
-                    <img src="./Frame%2033.png" alt="User" class="user-logo me-2 me-md-3" />
-                    <button class="btn btn-light header-btn"
+                    <img src="./Frame%2011.png" alt="Russia Flag" class="flag me-2 me-md-3 d-none d-lg-block" />
+                    <img src="./Frame%2033.png" alt="User" class="user-logo me-2 me-md-3 d-none d-lg-block" />
+                    <button class="btn btn-light header-btn d-none d-lg-block"
                         style="width: 175px; height: 40px;  font-size: 14px;">Создать
                         аккаунт</button>
+                </div>
+
+                <!-- Мобильная правая часть с флагом и кнопкой меню -->
+                <div class="mobile-header-right d-flex align-items-center d-lg-none">
+                    <img src="./Frame%2011.png" alt="Russia Flag" class="mobile-flag me-3" />
+                    <button class="navbar-toggler" type="button" id="mobile-menu-btn" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                 </div>
 
             </div>
         </nav>
     </header>
 
+    <!-- Mobile Sidebar -->
+    <div class="mobile-sidebar" id="mobile-sidebar">
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        <div class="sidebar-content">
+            <div class="sidebar-header">
+                <button class="sidebar-close" id="sidebar-close">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="sidebar-body">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-nav-item">
+                        <div class="custom-select-wrapper">
+                            <select class="custom-select sidebar-nav-link">
+                                <option value="">Турниры</option>
+                                <option value="tournament1">Турнир 1</option>
+                                <option value="tournament2">Турнир 2</option>
+                                <option value="tournament3">Турнир 3</option>
+                            </select>
+                            <span class="custom-arrow">▼</span>
+                        </div>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a class="sidebar-nav-link" href="#">Сообщество</a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a class="sidebar-nav-link" href="#">Membership</a>
+                    </li>
+                </ul>
+                <div class="sidebar-footer">
+                    <button class="btn btn-light sidebar-btn">
+                        Создать аккаунт
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content with background -->
     <main class="main-with-bg">
         <div class="main-content">
             <section class="hero-section w-100 ">
                 <div class=" z-1 py-5 px-0 main-content-responsive">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <!-- Десктопная версия -->
+                    <div class="d-flex justify-content-between align-items-center d-none d-lg-flex">
                         <div class="text-center text-lg-start">
                             <p class="hero-title fw-bold mb-4 text-white hero-title-responsive">
                                 <span>Программное обеспечение</span><br>
@@ -148,11 +191,89 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Мобильная версия -->
+                    <div class="d-flex flex-column d-lg-none">
+                        <!-- 1. Карточки hero-flex -->
+                        <div class="hero-mobile-cards">
+                            <div class="hero_flex text-white">
+                                <!-- Левая колонка (карточки 1 и 3) -->
+                                <div class="d-flex flex-column gap-2">
+                                    <!-- Card 1 -->
+                                    <div class="card bg-dark border-0 square-card mb-2">
+                                        <div class="card-body p-3 d-flex flex-column justify-content-center">
+                                            <h3 class="text-white hero-card-number">1000+</h3>
+                                            <p class="mb-0 hero-card-text">
+                                                Партнеров <br />и спортсменов</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 3 -->
+                                    <div class="card bg-dark border-0 square-card">
+                                        <div class="card-body p-3 d-flex flex-column justify-content-center">
+                                            <h3 class="text-white hero-card-number">10 000+
+                                            </h3>
+                                            <p class="mb-0 hero-card-text">
+                                                Зрителей следят за нами</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Правая колонка (карточки 2 и 4) -->
+                                <div class="d-flex flex-column gap-2">
+                                    <!-- Card 2 -->
+                                    <div class="card bg-dark border-0 square-card mb-2">
+                                        <div class="card-body p-3 d-flex flex-column justify-content-center">
+                                            <h3 class="text-white hero-card-number">>48%</h3>
+                                            <p class="mb-0 hero-card-text">
+                                                Наши постоянные клиенты</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Card 4 -->
+                                    <div class="card bg-dark border-0 square-card">
+                                        <div class="card-body p-3 d-flex flex-column justify-content-center">
+                                            <h3 class="text-white hero-card-number">+98%</h3>
+                                            <p class="mb-0 hero-card-text">
+                                                Посещаемость турниров</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Hero subtitle -->
+                        <div class="hero-mobile-subtitle">
+                            <p class="hero-subtitle lead text-white fw-normal hero-subtitle-responsive text-center">
+                                Организуй и
+                                следи за соревнованиями
+                            </p>
+                        </div>
+
+                        <!-- 3. Hero title -->
+                        <div class="hero-mobile-title">
+                            <p class="hero-title fw-bold text-white hero-title-responsive text-center">
+                                <span>Программное обеспечение</span><br>
+                                <span>для проведения турниров</span>
+                            </p>
+                        </div>
+
+                        <!-- 4. Hero buttons -->
+                        <div class="hero-mobile-buttons">
+                            <div class="hero-buttons d-flex flex-row gap-3 justify-content-center flex-wrap">
+                                <button
+                                    class="btn_one btn btn-light  bg-transparent text-white hero-btn-primary">Создать
+                                    событие</button>
+                                <button class="btn_two btn btn-light  bg-transparent text-white hero-btn-secondary">Все
+                                    турниры</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
 
-         <footer class="tournament-footer">
+        <footer class="tournament-footer">
             <div class="carousel-container">
                 <div class="carousel-track">
                     <!-- Slide 1 -->
@@ -235,6 +356,76 @@
                 </div>
             </div>
         </footer>
+        <footer class="tournament-footer-mobile">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide active">
+                        <div class="footer-left">
+                            <img src="./logo2025_mobile.png" alt="2025" class="logo-2025">
+                            <div class="tournament-info">
+                                <div class="date">26.04.2025 10:00</div>
+                                <h2 class="tournament-title">
+                                    WAYBJJ RUSSIA CHAMPIONSHIP JIU-JITSU 2025 DAY-2
+                                </h2>
+                                <div class="location">
+                                    Чеченская Республика Грозный Ул. Ахмеда Арслана Аллауадина, Д. <br /> 5А, СК
+                                    «Олимпийск»
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <div class="footer-left">
+                            <img src="./logo2025_2.png" alt="2025" class="logo-2025">
+                            <div class="tournament-info">
+                                <div class="date">18.05.2025 09:30</div>
+                                <h2 class="tournament-title">
+                                    North Caucasus Open No-Gi 2025
+                                </h2>
+                                <div class="location">
+                                    Назрань, Дворец спорта «МАГАС» им. Берда Евлоева
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <div class="footer-left">
+                            <img src="./logo2025_3.png" alt="2025" class="logo-2025">
+                            <div class="tournament-info">
+                                <div class="date">07.06.2025 11:00</div>
+                                <h2 class="tournament-title">
+                                    Volga Cup Gi & No-Gi 2025
+                                </h2>
+                                <div class="location">
+                                    Казань, ул. Победы, 45, Спорткомплекс «Ак Барс»
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="carousel-slide">
+                        <div class="footer-left">
+                            <img src="./logo2025_4.png" alt="2025" class="logo-2025">
+                            <div class="tournament-info">
+                                <div class="date">21.06.2025 10:00</div>
+                                <h2 class="tournament-title">
+                                    Siberia Grappling Challenge 2025
+                                </h2>
+                                <div class="location">
+                                    Новосибирск, Красный проспект, 120, Арена «Сибирь»
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </main>
 
     <div class="content ">
@@ -259,7 +450,7 @@
                 <p class="" style="font-size: 28px; font-weight: 600;">Для организаторов</p>
                 <p style="color: rgba(165, 165, 165, 1); font-weight: 400; font-size: 16px;">Онлайн-платежи,
                     формирование сетки, планирование и взвешивание. Когда придет время турнира.</p>
-                <div class="d-flex justify-content-between align-items-center feature-card-footer" >
+                <div class="d-flex justify-content-between align-items-center feature-card-footer">
                     <img src="./medal.png" alt="medal">
                     <i class="bi bi-arrow-right fs-1"></i>
                 </div>
@@ -287,12 +478,12 @@
         </div>
 
         <div class="why-choose-us">
-            <p class="why-choose-us-title" >Почему нас выбирают</p>
+            <p class="why-choose-us-title">Почему нас выбирают</p>
 
             <div class="grid-container">
                 <!-- Левая карточка (меньшая) -->
                 <div class="main-card card" style="border-radius: 16px">
-                    <p class="card_title" >Управляйте платежами,
+                    <p class="card_title">Управляйте платежами,
                         <br /> регистрациями и sms
                     </p>
                     <img src="./notifications.png" alt="Уведомления" class="notification-img">
@@ -314,7 +505,7 @@
                     <div class="card-content">
                         <p class="card_title2">Следите за соревнованиями из <br />любой точки мира
                         </p>
-                        <p  class="card_text" >Поддерживайте
+                        <p class="card_text">Поддерживайте
                             спортсменов и узнавайте о <br /> результатах в режиме онлайн</p>
                     </div>
                 </div>
@@ -353,12 +544,20 @@
         <div class="footer-divider" style="height: 1px; background-color: rgba(30, 30, 30, 1); margin-top: 3rem;"></div>
 
         <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center p-3">
-            <div class="footer-links d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 gap-md-5"
+            <div class="footer-links d-flex  flex-md-row justify-content-between align-items-center gap-3 gap-md-5"
                 style="color: rgba(94, 94, 94, 1)">
                 <p>Публичная оферта</p>
                 <p>Условия пользования</p>
                 <p>Политика конфедициальности</p>
             </div>
+            <div class="footer-links-mobile">
+                <div>
+                    <p>Публичная оферта</p>
+                    <p>Условия пользования</p>
+                </div>
+                <p>Политика конфедициальности</p>
+            </div>
+
             <div class="social-links d-flex justify-content-center justify-content-md-between align-items-center gap-3">
                 <img src="./instagram.png" alt="instagram">
                 <img src="./facebook.png" alt="facebook">
