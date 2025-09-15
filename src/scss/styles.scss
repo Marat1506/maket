@@ -558,7 +558,7 @@ body {
   transition: all 0.3s ease;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 
   @media (min-width: 3840px) {
@@ -3065,14 +3065,14 @@ body {
               font-size: 24px !important;
               font-weight: 400 !important;
               color: white !important;
-              margin-bottom: 0.5rem;
+              margin-bottom: 0;
             }
 
             .hero-card-text {
               color: rgba(165, 165, 165, 1) !important;
               font-size: 12px !important;
               font-weight: 400 !important;
-              line-height: 1.2;
+              line-height: 1;
             }
           }
         }
