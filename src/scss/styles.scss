@@ -3099,10 +3099,13 @@ body {
     }
 
     .hero-mobile-buttons {
+      
       .hero-buttons {
         margin-top: 2rem;
+        
 
         .btn_one {
+          border: 1px solid white;
           width: 73px;
           height: 35px;
           font-size: 19px;
@@ -3111,6 +3114,7 @@ body {
         }
 
         .btn_two {
+          border: 1px solid white;
           width: 74px;
           height: 35px;
           font-size: 19px;
