@@ -24,9 +24,9 @@ body {
 // Main with background
 .main-with-bg {
   position: relative;
-  min-height: 100dvh; // Гарантируем, что блок займет минимум весь экран
-  max-height: 100dvh; // Ограничиваем максимальную высоту экраном
-  overflow: hidden; // Скрываем всё, что выходит за пределы
+  min-height: 100dvh; 
+  max-height: 100dvh; 
+  overflow: hidden; 
   background-image: url('../main_background.png');
   background-size: cover;
   background-position: center top;
@@ -35,7 +35,8 @@ body {
   flex-direction: column;
 
   @media (max-width: 991px) {
-    min-height: 95vh;
+    min-height: 100vh;
+    min-height: 100dvh;
     background-image: url('../main_background_mobile.png');
   }
 
