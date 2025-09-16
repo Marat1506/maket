@@ -127,15 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // Close on nav link click
-        const sidebarNavLinks = mobileSidebar.querySelectorAll('.sidebar-nav-link');
-        sidebarNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (isOpen) {
-                    closeSidebar();
-                }
-            });
-        });
+
 
         // Close on Escape key
         document.addEventListener('keydown', (e) => {
@@ -159,39 +151,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!carouselTrack || !slides.length || !slideNumberEl || !prevBtn || !nextBtn) return;
 
-    let currentSlide = 0;
+    let currentSlide = 1; // Начинаем с первого оригинального слайда
     let isAnimating = false;
-    const totalSlides = slides.length;
+    const totalOriginalSlides = 4; // Количество оригинальных слайдов
+    const totalSlides = slides.length; // Общее количество слайдов (включая клоны)
     
     // Auto-slide variables
     let autoSlideInterval = null;
-    const autoSlideDelay = 5000; // 5 seconds
+    const autoSlideDelay = 5000;
 
-    // Helper to format slide number as 01, 02...
     function formatSlideNumber(index) {
-        const num = index + 1;
+        // Корректируем индекс для отображения (1-4 вместо 0-5)
+        const displayIndex = (index - 1) % totalOriginalSlides;
+        const num = displayIndex + 1;
         return num < 10 ? `0${num}` : `${num}`;
     }
 
-    // Update slide number display
     function updateSlideNumber() {
         slideNumberEl.textContent = formatSlideNumber(currentSlide);
     }
 
-    // Start auto-slide functionality
     function startAutoSlide() {
-        // Clear any existing interval
-        if (autoSlideInterval) {
-            clearInterval(autoSlideInterval);
-        }
-        
-        // Set new interval
-        autoSlideInterval = setInterval(() => {
-            nextSlide();
-        }, autoSlideDelay);
+        if (autoSlideInterval) clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(nextSlide, autoSlideDelay);
     }
 
-    // Stop auto-slide functionality
     function stopAutoSlide() {
         if (autoSlideInterval) {
             clearInterval(autoSlideInterval);
@@ -199,63 +183,54 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Restart auto-slide (useful when manually navigating)
     function restartAutoSlide() {
         stopAutoSlide();
         startAutoSlide();
     }
 
-    // Move carousel to specific slide
-    function goToSlide(index) {
+    function goToSlide(index, instant = false) {
         if (isAnimating) return;
         isAnimating = true;
 
-        // Remove active class from all slides
-        slides.forEach(slide => slide.classList.remove('active'));
-        
-        // Add active class to current slide
-        slides[index].classList.add('active');
-        
-        // Calculate transform value for horizontal sliding
-        // Since track is 400% wide and each slide is 25%, we move by 25% of track width per slide
-        const translateX = -index * 25;
+        if (instant) {
+            carouselTrack.style.transition = 'none';
+        } else {
+            carouselTrack.style.transition = 'transform 0.5s ease-in-out';
+        }
+
+        const translateX = -index * (100 / totalSlides);
         carouselTrack.style.transform = `translateX(${translateX}%)`;
         
         currentSlide = index;
         updateSlideNumber();
         
-        // Reset animation flag after transition completes
         setTimeout(() => {
             isAnimating = false;
-        }, 500); // Match CSS transition duration
+            
+            // Проверяем границы для бесконечной карусели
+            if (index === 0) {
+                // Если достигли клонированного последнего слайда, мгновенно переходим к настоящему последнему
+                setTimeout(() => goToSlide(totalSlides - 2, true), 50);
+            } else if (index === totalSlides - 1) {
+                // Если достигли клонированного первого слайда, мгновенно переходим к настоящему первому
+                setTimeout(() => goToSlide(1, true), 50);
+            }
+        }, instant ? 0 : 500);
     }
 
-    // Go to next slide
     function nextSlide() {
-        const nextIndex = (currentSlide + 1) % totalSlides;
-        goToSlide(nextIndex);
-        // Restart auto-slide timer when manually navigating
+        goToSlide(currentSlide + 1);
         restartAutoSlide();
     }
 
-    // Go to previous slide
     function prevSlide() {
-        const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-        goToSlide(prevIndex);
-        // Restart auto-slide timer when manually navigating
+        goToSlide(currentSlide - 1);
         restartAutoSlide();
     }
 
-    // Initialize carousel
     function initCarousel() {
-        // Set initial position
-        carouselTrack.style.transform = 'translateX(0%)';
-        updateSlideNumber();
-        
-        // Set first slide as active
-        slides[0].classList.add('active');
-        
-        // Start auto-slide
+        // Начинаем с первого оригинального слайда (индекс 1)
+        goToSlide(1, true);
         startAutoSlide();
     }
 
@@ -270,17 +245,10 @@ document.addEventListener('DOMContentLoaded', () => {
         prevSlide();
     });
 
-    // Pause auto-slide on hover
-    footer.addEventListener('mouseenter', () => {
-        stopAutoSlide();
-    });
+    footer.addEventListener('mouseenter', stopAutoSlide);
+    footer.addEventListener('mouseleave', startAutoSlide);
 
-    // Resume auto-slide when mouse leaves
-    footer.addEventListener('mouseleave', () => {
-        startAutoSlide();
-    });
-
-    // Initialize the carousel
+    // Инициализация
     initCarousel();
 });
 
@@ -294,18 +262,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!carouselTrack || !slides.length) return;
 
-    let currentSlide = 0;
+    let currentSlide = 1; // Начинаем с первого оригинального слайда
     let isAnimating = false;
-    const totalSlides = slides.length;
+    const totalOriginalSlides = 4; // Количество оригинальных слайдов
+    const totalSlides = slides.length; // Общее количество слайдов (включая клоны)
     
     // Auto-slide variables
     let autoSlideInterval = null;
-    const autoSlideDelay = 5000; // 5 seconds
+    const autoSlideDelay = 5000;
 
-    // Move carousel to specific slide
-    function goToSlide(index) {
+    function goToSlide(index, instant = false) {
         if (isAnimating) return;
         isAnimating = true;
+
+        if (instant) {
+            carouselTrack.style.transition = 'none';
+        } else {
+            carouselTrack.style.transition = 'transform 0.5s ease-in-out';
+        }
 
         // Remove active class from all slides
         slides.forEach(slide => slide.classList.remove('active'));
@@ -313,44 +287,35 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add active class to current slide
         slides[index].classList.add('active');
         
-        // Calculate transform value for horizontal sliding
-        // Since track is 400% wide and each slide is 25%, we move by 25% of track width per slide
-        // But we need to ensure we don't go beyond the last slide
-        const translateX = -index * 25;
-        
-        // Ensure the track doesn't go beyond the container bounds
-        const maxTranslateX = -75; // Maximum translation for the last slide (3 * 25%)
-        const clampedTranslateX = Math.max(translateX, maxTranslateX);
-        carouselTrack.style.transform = `translateX(${clampedTranslateX}%)`;
+        const translateX = -index * (100 / totalSlides);
+        carouselTrack.style.transform = `translateX(${translateX}%)`;
         
         currentSlide = index;
         
-        // Reset animation flag after transition completes
         setTimeout(() => {
             isAnimating = false;
-        }, 500); // Match CSS transition duration
+            
+            // Проверяем границы для бесконечной карусели
+            if (index === 0) {
+                // Если достигли клонированного последнего слайда, мгновенно переходим к настоящему последнему
+                setTimeout(() => goToSlide(totalSlides - 2, true), 50);
+            } else if (index === totalSlides - 1) {
+                // Если достигли клонированного первого слайда, мгновенно переходим к настоящему первому
+                setTimeout(() => goToSlide(1, true), 50);
+            }
+        }, instant ? 0 : 500);
     }
 
-    // Go to next slide
     function nextSlide() {
-        const nextIndex = (currentSlide + 1) % totalSlides;
-        goToSlide(nextIndex);
+        goToSlide(currentSlide + 1);
+        restartAutoSlide();
     }
 
-    // Start auto-slide functionality
     function startAutoSlide() {
-        // Clear any existing interval
-        if (autoSlideInterval) {
-            clearInterval(autoSlideInterval);
-        }
-        
-        // Set new interval
-        autoSlideInterval = setInterval(() => {
-            nextSlide();
-        }, autoSlideDelay);
+        if (autoSlideInterval) clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(nextSlide, autoSlideDelay);
     }
 
-    // Stop auto-slide functionality
     function stopAutoSlide() {
         if (autoSlideInterval) {
             clearInterval(autoSlideInterval);
@@ -358,38 +323,114 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Initialize mobile carousel
-    function initMobileCarousel() {
-        // Set initial position
-        carouselTrack.style.transform = 'translateX(0%)';
-        
-        // Set first slide as active
-        slides[0].classList.add('active');
-        
-        // Start auto-slide
+    function restartAutoSlide() {
+        stopAutoSlide();
         startAutoSlide();
     }
 
-    // Pause auto-slide on touch start
-    mobileFooter.addEventListener('touchstart', () => {
-        stopAutoSlide();
-    });
+    // Добавляем обработчики свайпов для мобильных устройств
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-    // Resume auto-slide when touch ends
-    mobileFooter.addEventListener('touchend', () => {
+    function handleTouchStart(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoSlide();
+    }
+
+    function handleTouchEnd(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
         startAutoSlide();
-    });
+    }
+
+    function handleSwipe() {
+        const minSwipeDistance = 50; // Минимальное расстояние свайпа
+        
+        if (touchEndX < touchStartX && touchStartX - touchEndX > minSwipeDistance) {
+            // Свайп влево - следующий слайд
+            nextSlide();
+        } 
+        
+        if (touchEndX > touchStartX && touchEndX - touchStartX > minSwipeDistance) {
+            // Свайп вправо - предыдущий слайд
+            goToSlide(currentSlide - 1);
+            restartAutoSlide();
+        }
+    }
+
+    function initMobileCarousel() {
+        // Начинаем с первого оригинального слайда (индекс 1)
+        goToSlide(1, true);
+        startAutoSlide();
+
+        // Добавляем обработчики свайпов
+        mobileFooter.addEventListener('touchstart', handleTouchStart, false);
+        mobileFooter.addEventListener('touchend', handleTouchEnd, false);
+    }
 
     // Pause auto-slide on mouse enter (for desktop testing)
-    mobileFooter.addEventListener('mouseenter', () => {
-        stopAutoSlide();
-    });
-
-    // Resume auto-slide when mouse leaves (for desktop testing)
-    mobileFooter.addEventListener('mouseleave', () => {
-        startAutoSlide();
-    });
+    mobileFooter.addEventListener('mouseenter', stopAutoSlide);
+    mobileFooter.addEventListener('mouseleave', startAutoSlide);
 
     // Initialize the mobile carousel
     initMobileCarousel();
+
+    // Очистка при размонтировании (если нужно)
+    window.addEventListener('beforeunload', () => {
+        mobileFooter.removeEventListener('touchstart', handleTouchStart);
+        mobileFooter.removeEventListener('touchend', handleTouchEnd);
+        stopAutoSlide();
+    });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const flagDropdowns = document.querySelectorAll('.flag-dropdown');
+    flagDropdowns.forEach(flagDropdown => {
+        const trigger = flagDropdown.querySelector('.selected-flag');
+        const list = flagDropdown.querySelector('.dropdown-list');
+        const items = list.querySelectorAll('.dropdown-item');
+
+        // Открытие/закрытие по клику на триггер
+        trigger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isOpen = flagDropdown.classList.contains('open');
+            // Закрываем все другие dropdown
+            document.querySelectorAll('.flag-dropdown.open').forEach(other => {
+                if (other !== flagDropdown) {
+                    other.classList.remove('open');
+                    other.querySelector('.dropdown-list').style.display = 'none';
+                }
+            });
+            flagDropdown.classList.toggle('open');
+            list.style.display = isOpen ? 'none' : 'block';
+        });
+
+        // Выбор элемента
+        items.forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const img = this.querySelector('img');
+                const selectedImg = flagDropdown.querySelector('.selected-flag-icon');
+                selectedImg.src = img.src;
+                selectedImg.alt = this.querySelector('span').textContent;
+                // Пример: смена языка сайта
+                document.documentElement.lang = this.dataset.value;
+                // Закрытие
+                flagDropdown.classList.remove('open');
+                list.style.display = 'none';
+            });
+        });
+    });
+
+    // Закрытие при клике вне dropdown
+    document.addEventListener('click', function(e) {
+        document.querySelectorAll('.flag-dropdown.open').forEach(dropdown => {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+                dropdown.querySelector('.dropdown-list').style.display = 'none';
+            }
+        });
+    });
 });

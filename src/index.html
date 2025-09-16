@@ -21,64 +21,95 @@
     <!-- Header Placeholder - будет вставлен динамически -->
     <!--    <div id="header-placeholder"></div>-->
 
-    <header class="header header-responsive">
-        <nav class="navbar navbar-expand-lg navbar-dark" style="padding-left: 0; padding-right: 0">
-            <div class="container-fluid d-flex justify-content-between" style="padding-left: 0; padding-right: 0">
+   <header class="header header-responsive">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="padding-left: 0; padding-right: 0">
+        <div class="container-fluid d-flex justify-content-between" style="padding-left: 0; padding-right: 0">
 
-                <div class="d-flex justify-content-between " style="gap: 7rem">
-
+            <div class="d-flex justify-content-between" style="gap: 7rem">
+                <div>
                     <img src="./_105553233322080.png" alt="Logo" class="header-logo d-none d-sm-block"
                         style="max-height: 36px" />
-                    <img src="./_105553233322080.png" alt="Logo" class="header-logo-mobile d-block d-sm-none" />
-                    <ul class="navbar-nav mx-auto gap-4">
-                        <li class="nav-item">
-                            <div class="custom-select-wrapper">
-                                <select class="custom-select nav-link">
-                                    <option value="">Турниры</option>
-                                    <option value="tournament1">Турнир 1</option>
-                                    <option value="tournament2">Турнир 2</option>
-                                    <option value="tournament3">Турнир 3</option>
-                                </select>
-                                <span class="custom-arrow">▼</span>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Сообщество</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Membership</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Логотип с адаптивными размерами -->
-
-
-
-
-                <!-- Навигационное меню -->
-
-
-
-                <!-- Правая часть с флагом, пользователем и кнопкой -->
-                <div class="header-right d-flex align-items-center">
-                    <img src="./Frame%2011.png" alt="Russia Flag" class="flag me-2 me-md-3 d-none d-lg-block" />
-                    <img src="./Frame%2033.png" alt="User" class="user-logo me-2 me-md-3 d-none d-lg-block" />
-                    <button class="btn btn-light header-btn d-none d-lg-block"
-                        style="width: 175px; height: 40px;  font-size: 14px;">Создать
-                        аккаунт</button>
+                    <img src="./logo-mobile.png" alt="Logo" class="header-logo-mobile d-block d-sm-none"
+                        style="max-height: 32px" />
                 </div>
 
-                <!-- Мобильная правая часть с флагом и кнопкой меню -->
-                <div class="mobile-header-right d-flex align-items-center d-lg-none">
-                    <img src="./Frame%2011.png" alt="Russia Flag" class="mobile-flag" />
-                    <button class="navbar-toggler" type="button" id="mobile-menu-btn" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-
+                <ul class="navbar-nav mx-auto gap-4">
+                    <li class="nav-item">
+                        <div class="custom-select-wrapper">
+                            <select class="custom-select nav-link">
+                                <option value="">Турниры</option>
+                                <option value="tournament1">Турнир 1</option>
+                                <option value="tournament2">Турнир 2</option>
+                                <option value="tournament3">Турнир 3</option>
+                            </select>
+                            <span class="custom-arrow">▼</span>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Сообщество</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Membership</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
+
+            <!-- Правая часть с флагом (dropdown), пользователем и кнопкой -->
+            <div class="header-right d-flex align-items-center d-none d-lg-flex">
+                <div class="flag-dropdown-wrapper me-2 me-md-3">
+                    <div class="flag-dropdown custom-select-wrapper">
+                        <div class="selected-flag d-flex align-items-center">
+                            <img src="./Frame%2011.png" alt="Ru" class="selected-flag-icon" />
+                        </div>
+                        <ul class="dropdown-list">
+                            <li class="dropdown-item d-flex align-items-center" data-value="ru">
+                                <span>Ru</span>
+                                <img src="./Frame%2011.png" alt="Ru" class="flag-icon me-1" />
+                                
+                            </li>
+                            <li class="dropdown-item d-flex align-items-center" data-value="en">
+                                <span>En</span>
+                                <img src="./Frame%2011.png" alt="En" class="flag-icon me-1" />
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <img src="./Frame%2033.png" alt="User" class="user-logo me-2 me-md-3" />
+                <button class="btn btn-light header-btn"
+                    style="width: 175px; height: 40px; font-size: 14px;">Создать
+                    аккаунт</button>
+            </div>
+
+            <!-- Мобильная правая часть с флагом (dropdown) и кнопкой меню -->
+            <div class="mobile-header-right d-flex align-items-center d-lg-none">
+                <div class="flag-dropdown-wrapper me-2">
+                    <div class="flag-dropdown custom-select-wrapper">
+                        <div class="selected-flag d-flex align-items-center">
+                            <img src="./Frame%2011.png" alt="Ru" class="selected-flag-icon mobile-flag" />
+                        </div>
+                        <ul class="dropdown-list">
+                            <li class="dropdown-item d-flex align-items-center" data-value="ru">
+                                <span>Ru</span>
+                                <img src="./Frame%2011.png" alt="Ru" class="flag-icon me-1" />
+                                
+                            </li>
+                            <li class="dropdown-item d-flex align-items-center" data-value="en">
+                                <span>En</span>
+                                <img src="./Frame%2011.png" alt="En" class="flag-icon me-1" />
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="navbar-toggler" type="button" id="mobile-menu-btn" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+</header>
 
     <!-- Mobile Sidebar -->
     <div class="mobile-sidebar" id="mobile-sidebar">
@@ -133,8 +164,7 @@
                             <p class="hero-subtitle lead mb-5 text-white fw-normal hero-subtitle-responsive">Организуй и
                                 следи за соревнованиями
                             </p>
-                            <div
-                                class="hero-buttons d-flex gap-3 justify-content-center justify-content-lg-start flex-wrap">
+                            <div class="hero-buttons d-flex gap-3 justify-content-center justify-content-lg-start ">
                                 <button class="btn btn-light btn-lg bg-transparent text-white hero-btn-primary"
                                     style="width: 223px; height: 55px; font-size: 19px; font-weight: 600; cursor: pointer">Создать
                                     событие</button>
@@ -260,7 +290,7 @@
 
                         <!-- 4. Hero buttons -->
                         <div class="hero-mobile-buttons">
-                            <div class="hero-buttons d-flex flex-row gap-3 justify-content-center flex-wrap">
+                            <div class="hero-buttons d-flex flex-row gap-3 justify-content-center ">
                                 <button
                                     class="btn_one btn btn-light  bg-transparent text-white hero-btn-primary">Создать
                                     событие</button>
@@ -276,6 +306,23 @@
         <footer class="tournament-footer">
             <div class="carousel-container">
                 <div class="carousel-track">
+
+                    <!-- Клонированный последний слайд (для бесконечности) -->
+                    <div class="carousel-slide">
+                        <div class="footer-left">
+                            <img src="./logo2025_4.png" alt="2025" class="logo-2025">
+                            <div class="tournament-info">
+                                <div class="date">21.06.2025 10:00</div>
+                                <h2 class="tournament-title">
+                                    Siberia Grappling Challenge 2025
+                                </h2>
+                                <div class="location">
+                                    Новосибирск, Красный проспект, 120, Арена «Сибирь»
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Slide 1 -->
                     <div class="carousel-slide active">
                         <div class="footer-left">
@@ -340,6 +387,24 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Клонированный первый слайд (для бесконечности) -->
+                    <div class="carousel-slide">
+                        <div class="footer-left">
+                            <img src="./logo2025.png" alt="2025" class="logo-2025">
+                            <div class="tournament-info">
+                                <div class="date">26.04.2025 10:00</div>
+                                <h2 class="tournament-title">
+                                    WAYBJJ RUSSIA CHAMPIONSHIP JIU-JITSU 2025 DAY-2
+                                </h2>
+                                <div class="location">
+                                    Чеченская Республика Грозный Ул. Ахмеда Арслана Аллауадина, Д. <br /> 5А, СК
+                                    «Олимпийск»
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -359,6 +424,21 @@
         <footer class="tournament-footer-mobile">
             <div class="carousel-container">
                 <div class="carousel-track">
+                    <!-- Клонированный последний слайд -->
+                    <div class="carousel-slide">
+                        <div class="footer-left">
+                            <img src="./logo2025_4.png" alt="2025" class="logo-2025">
+                            <div class="tournament-info">
+                                <div class="date">21.06.2025 10:00</div>
+                                <h2 class="tournament-title">
+                                    Siberia Grappling Challenge 2025
+                                </h2>
+                                <div class="location">
+                                    Новосибирск, Красный проспект, 120, Арена «Сибирь»
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Slide 1 -->
                     <div class="carousel-slide active">
                         <div class="footer-left">
@@ -369,7 +449,7 @@
                                     WAYBJJ RUSSIA CHAMPIONSHIP JIU-JITSU 2025 DAY-2
                                 </h2>
                                 <div class="location">
-                                    Чеченская Республика Грозный Ул. Ахмеда Арслана Аллауадина, Д. <br /> 5А, СК
+                                    Чеченская Республика Грозный Ул. Ахмеда Арслана Аллауадина, Д. 5А, СК
                                     «Олимпийск»
                                 </div>
                             </div>
@@ -423,6 +503,24 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Клонированный первый слайд -->
+                    <div class="carousel-slide">
+                        <div class="footer-left">
+                            <img src="./logo2025_mobile.png" alt="2025" class="logo-2025">
+                            <div class="tournament-info">
+                                <div class="date">26.04.2025 10:00</div>
+                                <h2 class="tournament-title">
+                                    WAYBJJ RUSSIA CHAMPIONSHIP JIU-JITSU 2025 DAY-2
+                                </h2>
+                                <div class="location">
+                                    Чеченская Республика Грозный Ул. Ахмеда Арслана Аллауадина, Д. 5А, СК
+                                    «Олимпийск»
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </footer>
@@ -520,7 +618,7 @@
             <img src="layer1.png" alt="footer_logo" class="footer-logo">
             <div
                 class="footer-nav d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 gap-md-5">
-                <ul class="navbar-nav mx-auto d-flex flex-row gap-5 ">
+                <ul class="navbar-nav mx-auto d-flex ">
                     <li class="nav-item">
                         <div class="custom-select-wrapper">
                             <select class="custom-select nav-link">
@@ -543,7 +641,7 @@
         </div>
         <div class="footer-divider" style="height: 1px; background-color: rgba(30, 30, 30, 1); margin-top: 3rem;"></div>
 
-        <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center p-3">
+        <div class="footer-bottom d-flex  justify-content-between align-items-center p-3">
             <div class="footer-links d-flex  flex-md-row justify-content-between align-items-center gap-3 gap-md-5"
                 style="color: rgba(94, 94, 94, 1)">
                 <p>Публичная оферта</p>
