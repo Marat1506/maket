@@ -24,8 +24,8 @@ body {
 // Main with background
 .main-with-bg {
   position: relative;
-  min-height: 100vh; // Гарантируем, что блок займет минимум весь экран
-  max-height: 100vh; // Ограничиваем максимальную высоту экраном
+  min-height: 100dvh; // Гарантируем, что блок займет минимум весь экран
+  max-height: 100dvh; // Ограничиваем максимальную высоту экраном
   overflow: hidden; // Скрываем всё, что выходит за пределы
   background-image: url('../main_background.png');
   background-size: cover;
