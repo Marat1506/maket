@@ -137,6 +137,7 @@ body {
   /* Стили для dropdown флага */
   .flag-dropdown-wrapper {
     position: relative;
+    top: 4px;
   }
 
   .flag-dropdown {
@@ -416,8 +417,13 @@ body {
     justify-content: center;
 
     //Адаптивные размеры карточек для больших экранов
-    @media (max-width: 1133px) {
+    
+    @media (max-width: 1134px) {
       width: calc(183px + (100vw - 1080px) * 0.1);
+      height: calc(135px + (100vw - 1080px) * 0.08);
+    }
+    @media (max-width: 1094px) {
+      width: calc(176px + (100vw - 1080px) * 0.1);
       height: calc(135px + (100vw - 1080px) * 0.08);
     }
     @media (max-width: 1080px) {
