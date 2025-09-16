@@ -416,6 +416,10 @@ body {
     justify-content: center;
 
     //Адаптивные размеры карточек для больших экранов
+    @media (max-width: 1133px) {
+      width: calc(183px + (100vw - 1080px) * 0.1);
+      height: calc(135px + (100vw - 1080px) * 0.08);
+    }
     @media (max-width: 1080px) {
       width: calc(173px + (100vw - 1080px) * 0.1);
       height: calc(135px + (100vw - 1080px) * 0.08);
