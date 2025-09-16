@@ -468,6 +468,9 @@ body {
     @media (max-width: 1080px) {
       font-size: calc(35px + (100vw - 1080px) * 0.03) !important;
     }
+    @media (max-width: 1293px) {
+      font-size: calc(50px + (100vw - 1536px) * 0.03) !important;
+    }
 
     @media (min-width: 1537px) {
       font-size: calc(55px + (100vw - 1536px) * 0.03) !important;
@@ -964,11 +967,11 @@ body {
   // 1414px (уменьшение на 120px)
   @media (max-width: 1414px) {
     .carousel-container {
-      width: 67.6%;
+      width: 67.4%;
     }
 
     .footer-right {
-      width: 32.4%;
+      width: 32.6%;
     }
   }
 
@@ -1052,11 +1055,169 @@ body {
   // 1334px (уменьшение на 200px)
   @media (max-width: 1334px) {
     .carousel-container {
-      width: 66.0%;
+      width: 65.7%;
     }
 
     .footer-right {
-      width: 34.0%;
+      width: 34.3%;
+    }
+  }
+
+  @media (max-width: 1324px) {
+    .carousel-container {
+      width: 65.3%;
+    }
+
+    .footer-right {
+      width: 34.7%;
+    }
+  }
+
+  @media (max-width: 1314px) {
+    .carousel-container {
+      width: 65%;
+    }
+
+    .footer-right {
+      width: 35%;
+    }
+  }
+
+   @media (max-width: 1294px) {
+    .carousel-container {
+      width: 64.6%;
+    }
+
+    .footer-right {
+      width: 35.4%;
+    }
+  }
+
+   @media (max-width: 1284px) {
+    .carousel-container {
+      width: 64.1%;
+    }
+
+    .footer-right {
+      width: 35.9%;
+    }
+  }
+
+   @media (max-width: 1274px) {
+    .carousel-container {
+      width: 63.8%;
+    }
+
+    .footer-right {
+      width: 36.2%;
+    }
+  }
+
+  @media (max-width: 1264px) {
+    .carousel-container {
+      width: 63.6%;
+    }
+
+    .footer-right {
+      width: 36.4%;
+    }
+  }
+
+   @media (max-width: 1254px) {
+    .carousel-container {
+      width: 63%;
+    }
+
+    .footer-right {
+      width: 37%;
+    }
+  }
+
+  @media (max-width: 1244px) {
+    .carousel-container {
+      width: 63%;
+    }
+
+    .footer-right {
+      width: 37%;
+    }
+  }
+
+  @media (max-width: 1234px) {
+    .carousel-container {
+      width: 62.7%;
+    }
+
+    .footer-right {
+      width: 37.3%;
+    }
+  }
+   @media (max-width: 1224px) {
+    .carousel-container {
+      width: 62.4%;
+    }
+
+    .footer-right {
+      width: 37.6%;
+    }
+  }
+
+  @media (max-width: 1214px) {
+    .carousel-container {
+      width: 62%;
+    }
+
+    .footer-right {
+      width: 38%;
+    }
+  }
+
+  @media (max-width: 1194px) {
+    .carousel-container {
+      width: 61.4%;
+    }
+
+    .footer-right {
+      width: 38.6%;
+    }
+  }
+
+  @media (max-width: 1174px) {
+    .carousel-container {
+      width: 61.1%;
+    }
+
+    .footer-right {
+      width: 38.9%;
+    }
+  }
+
+  @media (max-width: 1164px) {
+    .carousel-container {
+      width: 60.8%;
+    }
+
+    .footer-right {
+      width: 39.2%;
+    }
+  }
+
+  @media (max-width: 1154px) {
+    .carousel-container {
+      width: 60.6%;
+    }
+
+    .footer-right {
+      width: 39.4%;
+    }
+  }
+  @media (max-width: 1144px) {
+    .carousel-container {
+      width: 60.3%;
+    }
+
+    .footer-right {
+      width: 39.7%;
     }
   }
 
