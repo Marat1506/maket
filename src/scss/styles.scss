@@ -1385,7 +1385,7 @@ body {
 
 @media (min-width: 650px){
   .tournament-footer-mobile {
-    height: 220px;
+    height: 200px;
 
     .carousel-slide {  
     .footer-left {
@@ -2363,7 +2363,7 @@ body {
   @media (max-width: 991px) {
     
     margin-top: 3rem;
-    margin-bottom: 4rem;
+    // margin-bottom: 4rem;
     padding: 1rem 1rem;
     text-align: center;
 
@@ -3281,6 +3281,14 @@ body {
         display: flex;
         gap: 1rem;
         justify-content: center;
+        margin-top: 3rem;
+
+        @media (max-height: 790px) {
+          margin-top: 1rem;
+        }
+        @media (max-height: 730px) {
+          margin-top: 0;
+        }
 
         .d-flex.flex-column {
           gap: 0.5rem;
@@ -3317,6 +3325,10 @@ body {
         font-weight: 400 !important;
         margin-bottom: 0;
         margin-top: 3rem;
+
+        @media (max-height: 710px) {
+          margin-top: 1rem;
+        }
       }
     }
 
@@ -3527,6 +3539,9 @@ body {
       .hero-subtitle {
         font-size: 14px !important;
         margin-top: 3rem;
+         @media (max-height: 710px) {
+          margin-top: 1rem;
+        }
       }
     }
 
