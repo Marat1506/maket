@@ -160,6 +160,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let autoSlideInterval = null;
     const autoSlideDelay = 5000;
 
+    // Функция для установки стилей карусели в зависимости от количества слайдов
+    function setCarouselStyles() {
+        const slideWidthPercentage = 100 / totalSlides;
+        
+        // Устанавливаем ширину карусельной дорожки
+        carouselTrack.style.width = `${totalSlides * 100}%`;
+        
+        // Устанавливаем ширину каждого слайда
+        slides.forEach(slide => {
+            slide.style.width = `${slideWidthPercentage}%`;
+        });
+        
+        // Устанавливаем начальное положение
+        const initialTranslateX = -currentSlide * slideWidthPercentage;
+        carouselTrack.style.transform = `translateX(${initialTranslateX}%)`;
+    }
+
     function formatSlideNumber(index) {
         // Корректируем индекс для отображения (1-4 вместо 0-5)
         const displayIndex = (index - 1) % totalOriginalSlides;
@@ -198,7 +215,8 @@ document.addEventListener('DOMContentLoaded', () => {
             carouselTrack.style.transition = 'transform 0.5s ease-in-out';
         }
 
-        const translateX = -index * (100 / totalSlides);
+        const slideWidthPercentage = 100 / totalSlides;
+        const translateX = -index * slideWidthPercentage;
         carouselTrack.style.transform = `translateX(${translateX}%)`;
         
         currentSlide = index;
@@ -229,6 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initCarousel() {
+        // Устанавливаем стили карусели
+        setCarouselStyles();
+        
         // Начинаем с первого оригинального слайда (индекс 1)
         goToSlide(1, true);
         startAutoSlide();
@@ -253,6 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Tournament footer mobile carousel with automatic sliding
+// Tournament footer mobile carousel with automatic sliding
 document.addEventListener('DOMContentLoaded', () => {
     const mobileFooter = document.querySelector('.tournament-footer-mobile');
     if (!mobileFooter) return;
@@ -271,6 +293,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let autoSlideInterval = null;
     const autoSlideDelay = 5000;
 
+    // Функция для установки стилей карусели в зависимости от количества слайдов
+    function setCarouselStyles() {
+        const slideWidthPercentage = 100 / totalSlides;
+        
+        // Устанавливаем ширину карусельной дорожки
+        carouselTrack.style.width = `${totalSlides * 100}%`;
+        carouselTrack.style.maxWidth = `${totalSlides * 100}%`;
+        
+        // Устанавливаем ширину каждого слайда
+        slides.forEach(slide => {
+            slide.style.width = `${slideWidthPercentage}%`;
+        });
+        
+        // Устанавливаем начальное положение
+        const initialTranslateX = -currentSlide * slideWidthPercentage;
+        carouselTrack.style.transform = `translateX(${initialTranslateX}%)`;
+    }
+
     function goToSlide(index, instant = false) {
         if (isAnimating) return;
         isAnimating = true;
@@ -287,7 +327,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add active class to current slide
         slides[index].classList.add('active');
         
-        const translateX = -index * (100 / totalSlides);
+        const slideWidthPercentage = 100 / totalSlides;
+        const translateX = -index * slideWidthPercentage;
         carouselTrack.style.transform = `translateX(${translateX}%)`;
         
         currentSlide = index;
@@ -359,6 +400,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initMobileCarousel() {
+        // Устанавливаем стили карусели
+        setCarouselStyles();
+        
         // Начинаем с первого оригинального слайда (индекс 1)
         goToSlide(1, true);
         startAutoSlide();
