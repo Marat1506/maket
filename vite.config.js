@@ -7,8 +7,10 @@ export default defineConfig({
         outDir: '../dist',
         emptyOutDir: true,
         rollupOptions: {
-            output: {
-                manualChunks: undefined
+            input: {
+                main: path.resolve(__dirname, 'src/index.html'),
+                str: path.resolve(__dirname, 'src/index2.html'),
+                str3: path.resolve(__dirname, 'src/index3.html')
             }
         },
         target: 'es2015'

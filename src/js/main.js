@@ -5,54 +5,85 @@ import '../scss/styles.scss'
 import * as bootstrap from 'bootstrap'
 
 // Простая логика маршрутизации
-function checkRoute() {
-    const currentPath = window.location.pathname;
+// Создаем роутер
+class SimpleRouter {
+    constructor() {
+        this.routes = {
+            '/': 'index.html',
+            '/str': 'index2.html',
+            '/str3': 'index3.html'
+        };
+        
+        this.init();
+    }
     
-    if (currentPath === '/str') {
-        // Загружаем содержимое index2.html и вставляем в body
-        fetch('./index2.html')
+    init() {
+        // Обработка начальной загрузки
+        this.navigate(window.location.pathname, false);
+        
+        // Перехват кликов по ссылкам
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a');
+            if (link && link.href && link.href.startsWith(window.location.origin)) {
+                e.preventDefault();
+                this.navigate(link.pathname);
+            }
+        });
+        
+        // Обработка кнопок браузера
+        window.addEventListener('popstate', () => {
+            this.navigate(window.location.pathname, false);
+        });
+    }
+    
+    navigate(path, pushState = true) {
+        const normalizedPath = path.endsWith('/') ? path.slice(0, -1) : path;
+        const page = this.routes[normalizedPath] || 'index.html';
+        
+        if (pushState) {
+            window.history.pushState({}, '', path);
+        }
+        
+        this.loadPage(page);
+    }
+    
+    loadPage(pageName) {
+        fetch(`./${pageName}`)
             .then(response => response.text())
             .then(html => {
-                // Извлекаем содержимое body из index2.html
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
-                const newBodyContent = doc.body.innerHTML;
                 
-                // Заменяем содержимое текущего body
-                document.body.innerHTML = newBodyContent;
+                // Анимированная смена контента
+                document.body.style.opacity = '0';
                 
-                // Обновляем заголовок страницы
-                document.title = doc.title;
+                setTimeout(() => {
+                    document.body.innerHTML = doc.body.innerHTML;
+                    document.title = doc.title;
+                    this.restartScripts();
+                    
+                    document.body.style.opacity = '1';
+                }, 200);
             })
             .catch(error => {
-                console.error('Ошибка загрузки index2.html:', error);
+                console.error('Ошибка загрузки страницы:', error);
             });
     }
-
-    if (currentPath === '/str3') {
-        // Загружаем содержимое index2.html и вставляем в body
-        fetch('./index3.html')
-            .then(response => response.text())
-            .then(html => {
-                // Извлекаем содержимое body из index2.html
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const newBodyContent = doc.body.innerHTML;
-
-                // Заменяем содержимое текущего body
-                document.body.innerHTML = newBodyContent;
-
-                // Обновляем заголовок страницы
-                document.title = doc.title;
-            })
-            .catch(error => {
-                console.error('Ошибка загрузки index2.html:', error);
+    
+    restartScripts() {
+        document.querySelectorAll('script').forEach(oldScript => {
+            const newScript = document.createElement('script');
+            Array.from(oldScript.attributes).forEach(attr => {
+                newScript.setAttribute(attr.name, attr.value);
             });
+            newScript.textContent = oldScript.textContent;
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
     }
 }
 
-// Проверяем маршрут при загрузке страницы
-checkRoute();
+// Инициализация роутера
+new SimpleRouter();
 
 // Динамическая подгрузка header.html
 // fetch('./components/header.html')
