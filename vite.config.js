@@ -2,17 +2,24 @@ import { defineConfig } from 'vite'
 import path from 'path'
 
 export default defineConfig({
-    root: path.resolve(__dirname, 'src'),
+    root: path.resolve(__dirname, 'src'), // Корень - папка src
     build: {
-        outDir: '../dist',
+        outDir: '../dist', // Выходная директория на уровень выше
         emptyOutDir: true,
         rollupOptions: {
             input: {
-                main: './index.html',
-                str3: './index3.html' // Указываем правильное имя файла
+                main: path.resolve(__dirname, 'src/index.html'), // Полный путь
+                str3: path.resolve(__dirname, 'src/index3.html') // Полный путь
             },
             output: {
-                manualChunks: undefined
+                manualChunks: undefined,
+                // Опционально: переименовать выходные файлы
+                assetFileNames: (assetInfo) => {
+                    if (assetInfo.name === 'index3.html') {
+                        return 'str3.html'; // Переименовываем index2.html в str3.html
+                    }
+                    return 'assets/[name]-[hash][extname]';
+                }
             }
         },
         target: 'es2015'
