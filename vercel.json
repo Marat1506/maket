@@ -4,6 +4,10 @@
   "installCommand": "npm ci --prefer-offline --no-audit",
   "framework": "vite",
   "rewrites": [
+     {
+      "source": "/str",
+      "destination": "/index2.html"
+    },
     {
       "source": "/str3",
       "destination": "/index3.html"

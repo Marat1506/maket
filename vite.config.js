@@ -7,6 +7,10 @@ export default defineConfig({
         outDir: '../dist',
         emptyOutDir: true,
         rollupOptions: {
+            input: {
+                main: './index.html',
+                str3: './index3.html' // Указываем правильное имя файла
+            },
             output: {
                 manualChunks: undefined
             }
