@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import 'styles2.module';
 @import 'styles3.module';
+
 // Основные стили
 html {
   overflow-x: hidden;
@@ -61,8 +62,10 @@ body {
   .main-content-responsive {
     padding-right: 3.5rem !important;
     padding-left: 3.5rem !important;
+    margin-top: 2.7rem;
 
     @media (min-width: 1537px) {
+
       padding-left: calc(3.5rem + (100vw - 1536px) * 0.1) !important;
       padding-right: calc(3.5rem + (100vw - 1536px) * 0.1) !important;
     }
@@ -1693,7 +1696,7 @@ body {
             font-size: calc(16px + (100vw - 1536px) * 0.01) !important;
           }
 
-           @media(max-width: 991px) {
+          @media(max-width: 991px) {
             font-size: calc(20px + (100vw - 991px) * 0.01) !important;
           }
         }
@@ -2133,6 +2136,7 @@ body {
     flex-direction: row;
     gap: 3rem;
   }
+
   .navbar-nav .nav-item {
     position: relative;
     transition: all 0.3s ease;
