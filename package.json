@@ -11,6 +11,7 @@
     "start": "vite",
     "dev": "vite",
     "build": "npx vite build",
+    "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
