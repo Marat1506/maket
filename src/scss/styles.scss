@@ -265,6 +265,26 @@ body {
     outline: none;
     position: relative;
     z-index: 2;
+
+      option {
+        background-color: black !important; // Черный фон для option
+        color: white !important; // Белый текст
+        padding: 10px;
+    }
+
+    // Для Webkit браузеров (Chrome, Safari)
+    &::-webkit-listbox {
+        background-color: black !important;
+    }
+
+    &::-webkit-dropdown-menu {
+        background-color: black !important;
+    }
+
+    &::-webkit-select-dropdown {
+        background-color: black !important;
+        color: white !important;
+    }
   }
 
   /* Для IE */
