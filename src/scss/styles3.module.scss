@@ -1,6 +1,3 @@
-
-
-
 .header3 {
   position: fixed;
   top: 0;
@@ -190,24 +187,24 @@
     position: relative;
     z-index: 2;
 
-      option {
-        background-color: black !important; // Черный фон для option
-        color: white !important; // Белый текст
-        padding: 10px;
+    option {
+      background-color: black !important; // Черный фон для option
+      color: white !important; // Белый текст
+      padding: 10px;
     }
 
     // Для Webkit браузеров (Chrome, Safari)
     &::-webkit-listbox {
-        background-color: black !important;
+      background-color: black !important;
     }
 
     &::-webkit-dropdown-menu {
-        background-color: black !important;
+      background-color: black !important;
     }
 
     &::-webkit-select-dropdown {
-        background-color: black !important;
-        color: white !important;
+      background-color: black !important;
+      color: white !important;
     }
   }
 
@@ -344,6 +341,7 @@
 
   .contnet3_header {
     // Стили для основного контейнера
+    display: flex;
 
 
     &_one {
@@ -366,8 +364,23 @@
       color: rgba(149, 149, 149, 1);
     }
 
+    .btn_one {
+      border-radius: 15px;
+      z-index: 2;
+
+    }
+
+    .btn_two {
+      background-color: rgba(39, 40, 40, 1);
+      border-radius: 15px;
+      z-index: 1;
+      margin-left: -15px;
+      padding-left: 4rem;
+      padding-right: 2rem;
+    }
+
     // Стили для кнопки
-    button {
+    .btn-right {
       transition: all 0.3s ease;
       border-radius: 15px;
       padding-top: 0.7rem;
@@ -448,45 +461,193 @@
 
   .cards3-container {
     width: 100%;
-}
+  }
 
-.cards3 {
+  .cards3 {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); // Всегда 3 колонки
+    grid-template-columns: repeat(4, 1fr); // Всегда 3 колонки
     gap: 1rem; // Равномерный отступ между карточками
     width: 100%;
 
     .card {
-        background-color: rgba(0, 0, 0, 1) !important;
-        color: white;
-        height: 336px;
-        min-width: 0; // Важно для предотвращения переполнения
-        
-        // Чтобы карточки занимали всю доступную ширину колонки
+      background-color: rgba(0, 0, 0, 1) !important;
+      color: white;
+      // height: 336px;
+      min-width: 0; // Важно для предотвращения переполнения
+      border-radius: 25px !important;
+
+      // border-top-left-radius: 35px;
+
+      // Чтобы карточки занимали всю доступную ширину колонки
+      width: 100%;
+      max-width: 100%;
+
+      .card-body {
+        .card-title {
+          color: white;
+          font-size: 23px;
+          font-weight: 600;
+          letter-spacing: 0;
+          // Добавляем перенос текста
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+        }
+
+        .card-text {
+          font-size: 14px;
+          color: rgba(165, 165, 165, 1);
+        }
+      }
+
+      .card-img-top {
         width: 100%;
-        max-width: 100%;
-
-        .card-body {
-            .card-title {
-                color: white;
-                font-size: 28px;
-                font-weight: 600;
-                letter-spacing: 0;
-                // Добавляем перенос текста
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-            }
-
-            .card-text {
-                color: rgba(165, 165, 165, 1);
-            }
-        }
-
-        .card-img-top {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+        height: 100px;
+        object-fit: cover;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+      }
     }
-}
+  }
+
+  .footer-pagination {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+
+    .footer-pagination-left {
+      .pagination {
+        display: flex;
+        gap: 8px; // Отступы между элементами
+
+        .page-item {
+          &:nth-last-child(1) {
+            margin-left: 15px;
+          }
+
+          .page-link {
+            background-color: rgba(0, 0, 0, 1);
+            color: white; // Белый текст
+            border: 1px solid #333; // Граница
+            border-radius: 13px; // Закругления
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+
+            cursor: pointer;
+
+            // Эффект при наведении на неактивные элементы
+            &:hover:not(.active .page-link) {
+              background-color: #333;
+              color: white;
+              transform: translateY(-2px);
+              box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+            }
+
+
+
+
+          }
+
+
+          &.active {
+            .page-link {
+              background-color: white;
+              color: black;
+              border-color: white;
+              font-weight: 600;
+
+              // Эффект при наведении на активный элемент
+              &:hover {
+                background-color: #f0f0f0;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+              }
+            }
+          }
+
+          // Стиль для disabled состояний (если понадобится)
+          &.disabled {
+            .page-link {
+              background-color: #222;
+              color: #666;
+              border-color: #333;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+
+    .footer-pagination-right {
+      .circle-arrow-btn {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background-color: black;
+        border: 1px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 0;
+        position: relative; // Важно для позиционирования
+
+        // Общие стили для обеих стрелок
+        .arrow-icon {
+          width: 24px;
+          height: 24px;
+          object-fit: contain;
+          transition: all 0.3s ease;
+          position: absolute; // Размещаем одну над другой
+        }
+
+        // Белая стрелка (видима по умолчанию)
+        .arrow-white {
+          opacity: 1;
+        }
+
+        // Черная стрелка (скрыта по умолчанию)
+        .arrow-black {
+          opacity: 0;
+        }
+
+        // Эффекты при наведении
+        &:hover {
+          background-color: white; // Фон становится белым
+          border-color: white;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+          // Прячем белую стрелку
+          .arrow-white {
+            opacity: 0;
+            transform: translateX(2px);
+          }
+
+          // Показываем черную стрелку
+          .arrow-black {
+            opacity: 1;
+            transform: translateX(2px);
+          }
+        }
+
+        // Активное состояние (при нажатии)
+        &:active {
+          transform: translateY(0);
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+          .arrow-black {
+            transform: translateX(4px);
+          }
+        }
+      }
+    }
+
+
+  }
+
+
+
 }
