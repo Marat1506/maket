@@ -5,6 +5,10 @@
   "framework": "vite",
   "rewrites": [
     {
+      "source": "/str3",
+      "destination": "/index3.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
